@@ -14,7 +14,7 @@ public class Commands implements CommandExecutor
     {
         if (args.length == 0)
         {
-            sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "PA" + ChatColor.BLUE + "] " + ChatColor.RED + "引数が足りません！" + ChatColor.AQUA + " /pa help でヘルプを見てください！");
+            sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "PA" + ChatColor.BLUE + "] " + ChatColor.RED + "引数が足りません！" + ChatColor.AQUA + " /atm help でヘルプを見てください！");
             return true;
         }
 

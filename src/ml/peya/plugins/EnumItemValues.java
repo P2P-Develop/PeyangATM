@@ -1,5 +1,7 @@
 package ml.peya.plugins;
 
+import com.google.common.math.IntMath;
+import org.bukkit.craftbukkit.libs.jline.console.history.PersistentHistory;
 import org.bukkit.inventory.ItemStack;
 
 
@@ -21,6 +23,13 @@ public enum EnumItemValues
     {
         this.moneyStacks = MoneyUnits.getItemByInt(money);
         this.money = money;
+    }
+
+    public EnumItemValues getEnumItemValuesByInt(int money)
+    {
+        this.moneyStacks = MoneyUnits.getItemByInt(money);
+        this.money = money;
+        return this;
     }
 
     public ItemStack getItem()

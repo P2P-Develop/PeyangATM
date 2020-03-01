@@ -4,7 +4,9 @@ description: Peyang ATMMMMMMM In vault!!!!!(if possible)
 author: Peyang(Discord Peyang#9799)
 main: ml.peya.plugins.Atm
 prefix: PA
-depend: [Vault]
+load: POSTWORLD
+softdepend:  [Jecon]
+depend: [Jecon]
 commands:
    atm:
       description: a Atm open command.
