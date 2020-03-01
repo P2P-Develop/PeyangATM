@@ -1,0 +1,25 @@
+#Server Name
+server: ペや鯖
+
+#Unit of money
+unit=: Peyallion
+
+#is Allow Debt
+debt: false
+
+#Language
+lang: ja_JP.yml
+
+#item
+item:
+  - COAL
+  - WHEAT
+  - SIME_BALL
+  - IRON_NUGGET
+  - IRON_INGOT
+  - GOLD_NUGGET
+  - GHAST_TEAR
+  - DIAMOND
+
+#autoCreatedAccount
+autoCreateAccount: false
