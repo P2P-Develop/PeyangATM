@@ -1,8 +1,8 @@
 #Server Name
-server: ペや鯖
+server: PeyangServer
 
 #Unit of money
-unit=: Peyallion
+unit: Peyallion
 
 #is Allow Debt
 debt: false

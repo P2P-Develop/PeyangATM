@@ -1,5 +1,6 @@
 package ml.peya.plugins;
 
+import ml.peya.plugins.Inventory.Inventorys;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,7 +24,11 @@ public class Commands implements CommandExecutor
             case "help":
                 sender.sendMessage(ChatColor.DARK_AQUA + "-----=====" + ChatColor.BLUE + "[" + ChatColor.AQUA + "PeyangATM" + ChatColor.BLUE + "]" + ChatColor.DARK_AQUA + "=====-----\n" +
                                       ChatColor.AQUA + "/atm open\n" +
-                                      ChatColor.GREEN + "ATMを開きます。");
+                                      ChatColor.GREEN + "ATMを開きます。\n" +
+                                      ChatColor.AQUA + "/atm help\n" +
+                                      ChatColor.GREEN + "ヘルプを表示します。\n" +
+                                      ChatColor.AQUA + "/atm reload\n" +
+                                      ChatColor.GREEN + "コンフィグをリロードします。");
                 break;
             case "open":
                 if (sender instanceof ConsoleCommandSender)

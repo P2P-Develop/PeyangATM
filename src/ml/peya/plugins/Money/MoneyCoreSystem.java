@@ -1,10 +1,12 @@
-package ml.peya.plugins;
+package ml.peya.plugins.Money;
 
 
 import jp.jyn.jecon.Jecon;
 import jp.jyn.jecon.repository.BalanceRepository;
-import net.milkbowl.vault.Vault;
-import org.apache.commons.io.filefilter.FalseFileFilter;
+import ml.peya.plugins.Atm;
+import ml.peya.plugins.BalanceOutput;
+import ml.peya.plugins.Enum.EnumBalanceOutput;
+import ml.peya.plugins.Enum.EnumItemValues;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -27,7 +29,7 @@ public class MoneyCoreSystem
             case NOMONEY:
                 return new BalanceOutput(output.getType(), "No Money.", false);
             default:
-                return new BalanceOutput(BalanceOutput.Type.ERROR, "Unknown error.", false);
+                return new BalanceOutput(EnumBalanceOutput.ERROR, "Unknown error.", false);
         }
     }
 
@@ -35,15 +37,15 @@ public class MoneyCoreSystem
     {
         if (!hasAccount(uuid))
         {
-            return new BalanceOutput(BalanceOutput.Type.NOACCOUNT, "NO Account!", false);
+            return new BalanceOutput(EnumBalanceOutput.NOACCOUNT, "NO Account!", false);
         }
         if (repository.has(uuid, money))
         {
-            return new BalanceOutput(BalanceOutput.Type.OK, "", true);
+            return new BalanceOutput(EnumBalanceOutput.OK, "", true);
         }
         else
         {
-            return new BalanceOutput(BalanceOutput.Type.NOMONEY, "No Money.", false);
+            return new BalanceOutput(EnumBalanceOutput.NOMONEY, "No Money.", false);
         }
     }
 
@@ -58,9 +60,9 @@ public class MoneyCoreSystem
         if(hasAccount(uuid))
         {
             repository.deposit(uuid, money);
-            return new BalanceOutput(BalanceOutput.Type.OK, "Ok", true);
+            return new BalanceOutput(EnumBalanceOutput.OK, "Ok", true);
         }
 
-        return new BalanceOutput(BalanceOutput.Type.NOACCOUNT, "Failed", false);
+        return new BalanceOutput(EnumBalanceOutput.NOACCOUNT, "Failed", false);
     }
 }

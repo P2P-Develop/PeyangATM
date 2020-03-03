@@ -19,8 +19,12 @@ buttonBack: 戻る
 buttonClose: 閉じる
 
 #ヘルプメッセージ
-##開く
+##ATMを開く
 openMessage: ATMを開きます。
+##ヘルプを表示
+helpMessage: ヘルプを表示します。
+##コンフィグをリロード
+reloadMessage: コンフィグをリロードします。
 
 #エラー
 ##権限なし

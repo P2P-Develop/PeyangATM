@@ -1,9 +1,9 @@
-package ml.peya.plugins;
+package ml.peya.plugins.Enum;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public enum OutMessageType
+public enum EnumOutMessageType
 {
     FINEST(-100),
     FINER(-50),
@@ -13,7 +13,7 @@ public enum OutMessageType
     WARNING(75),
     SEVERE(100);
 
-    OutMessageType(int level) {}
+    EnumOutMessageType(int level) {}
 
     public void log(Logger logger, String message)
     {

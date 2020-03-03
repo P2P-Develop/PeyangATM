@@ -1,4 +1,4 @@
-package ml.peya.plugins;
+package ml.peya.plugins.Money;
 
 import net.minecraft.server.v1_12_R1.Items;
 import org.bukkit.Material;

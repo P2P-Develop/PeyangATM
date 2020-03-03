@@ -1,9 +1,9 @@
-package ml.peya.plugins;
+package ml.peya.plugins.Inventory;
 
+import ml.peya.plugins.Money.MoneyUnits;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.yaml.snakeyaml.events.Event;
 
 import java.util.ArrayList;
 

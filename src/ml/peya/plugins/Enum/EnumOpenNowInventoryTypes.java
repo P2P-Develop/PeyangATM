@@ -1,4 +1,4 @@
-package ml.peya.plugins;
+package ml.peya.plugins.Enum;
 
 public enum EnumOpenNowInventoryTypes
 {

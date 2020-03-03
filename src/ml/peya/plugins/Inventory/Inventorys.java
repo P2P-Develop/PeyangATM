@@ -1,6 +1,8 @@
-package ml.peya.plugins;
+package ml.peya.plugins.Inventory;
 
-import com.sun.istack.internal.NotNull;
+import ml.peya.plugins.Atm;
+import ml.peya.plugins.Enum.EnumItemValues;
+import ml.peya.plugins.Enum.EnumOpenNowInventoryTypes;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -24,7 +26,7 @@ public class Inventorys
         inventory.setItem(7, outStack);
         inventory.setItem(8, outStack);
         player.openInventory(inventory);
-        Atm.openInventory = EnumOpenNowInventoryTypes.SELECT_INVENTORY;
+        Atm.openInventory.change(player, EnumOpenNowInventoryTypes.SELECT_INVENTORY);
     }
 
     public static void openInInventory(Player player)
@@ -40,7 +42,7 @@ public class Inventorys
         inventory.setItem(46, InventoryItems.getBackButtonItem());
         inventory.setItem(45, InventoryItems.getBackButtonItem());
         player.openInventory(inventory);
-        Atm.openInventory = EnumOpenNowInventoryTypes.IN_INVENTORY;
+        Atm.openInventory.change(player, EnumOpenNowInventoryTypes.IN_INVENTORY);
     }
 
     public static void openOutInventory(Player player)
@@ -65,6 +67,6 @@ public class Inventorys
         inventory.setItem(16, InventoryItems.getBackButtonItem("戻る"));
         inventory.setItem(17, InventoryItems.getBackButtonItem("戻る"));
         player.openInventory(inventory);
-        Atm.openInventory = EnumOpenNowInventoryTypes.OUT_INVENTORY;
+        Atm.openInventory.change(player, EnumOpenNowInventoryTypes.OUT_INVENTORY);
     }
 }

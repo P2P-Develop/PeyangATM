@@ -1,26 +1,21 @@
 package ml.peya.plugins;
 
+import ml.peya.plugins.Enum.EnumBalanceOutput;
 
 public class BalanceOutput
 {
-    enum Type
-    {
-        ERROR,
-        OK,
-        NOACCOUNT,
-        NOMONEY;
-    }
-    private Type type;
+
+    private EnumBalanceOutput type;
     private String message;
     private boolean isSuccess;
-    BalanceOutput(Type type, String message, boolean isSuccess)
+    public BalanceOutput(EnumBalanceOutput type, String message, boolean isSuccess)
     {
         this.type = type;
         this.message = message;
         this.isSuccess = isSuccess;
     }
 
-    public Type getType()
+    public EnumBalanceOutput getType()
     {
         return type;
     }

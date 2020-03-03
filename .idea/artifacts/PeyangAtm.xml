@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="PeyangAtm">
+    <output-path>$PROJECT_DIR$/out/artifacts/PeyangAtm</output-path>
+    <root id="archive" name="PeyangAtm.jar">
+      <element id="module-output" name="PeyangATM" />
+    </root>
+  </artifact>
+</component>
