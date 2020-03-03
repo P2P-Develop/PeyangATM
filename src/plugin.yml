@@ -10,7 +10,8 @@ depend: [Jecon]
 commands:
    atm:
       description: a Atm open command.
-      permission: atm.open
 permissions:
    atm.open:
       description: ATM Open Commands.
+   atm.admin:
+      description: ATM Admin Commands

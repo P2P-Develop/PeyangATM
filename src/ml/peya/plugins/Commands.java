@@ -1,5 +1,6 @@
 package ml.peya.plugins;
 
+import ml.peya.plugins.Interface.LanguageInterface;
 import ml.peya.plugins.Inventory.Inventorys;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -15,7 +16,7 @@ public class Commands implements CommandExecutor
     {
         if (args.length == 0)
         {
-            sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "PA" + ChatColor.BLUE + "] " + ChatColor.RED + "引数が足りません！" + ChatColor.AQUA + " /atm help でヘルプを見てください！");
+            sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "ATM" + ChatColor.BLUE + "] " + ChatColor.RED + "引数が足りません！" + ChatColor.AQUA + " /atm help でヘルプを見てください！");
             return true;
         }
 
@@ -33,7 +34,7 @@ public class Commands implements CommandExecutor
             case "open":
                 if (sender instanceof ConsoleCommandSender)
                 {
-                    sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "PA" + ChatColor.BLUE + "] " + ChatColor.RED + "プレイヤーから実行してください！");
+                    sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "ATM" + ChatColor.BLUE + "] " + ChatColor.RED + "プレイヤーから実行してください！");
                     return true;
                 }
                 if (sender.hasPermission("pa.open"))
@@ -42,8 +43,13 @@ public class Commands implements CommandExecutor
                 }
                 else
                 {
-                    sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "PA" + ChatColor.BLUE + "] " + ChatColor.RED + "貴方には権限がありません！");
+                    sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "ATM" + ChatColor.BLUE + "] " + ChatColor.RED + "貴方には権限がありません！");
                 }
+                break;
+            case "reload":
+                Atm.plugin.reloadConfig();
+                Atm.language.getConfig().reloadConfig();
+                sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "ATM" + ChatColor.BLUE + "] " + ChatColor.GREEN + "コンフィグをリロードしました。");
         }
         return true;
     }

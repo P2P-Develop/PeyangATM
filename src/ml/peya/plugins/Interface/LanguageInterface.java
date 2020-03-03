@@ -7,9 +7,10 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class LanguageInterface
 {
     private FileConfiguration config;
+    ConfigUtils configUtils;
     public LanguageInterface()
     {
-        ConfigUtils configUtils = new ConfigUtils(Atm.plugin, "lang/" + Atm.config.getString("lang"));
+        configUtils = new ConfigUtils(Atm.plugin, "lang/" + Atm.config.getString("lang"));
         configUtils.saveDefaultConfig();
         config = configUtils.getConfig();
     }
@@ -17,5 +18,10 @@ public class LanguageInterface
     public String translateString(String key)
     {
         return config.getString(key);
+    }
+
+    public ConfigUtils getConfig()
+    {
+        return configUtils;
     }
 }
