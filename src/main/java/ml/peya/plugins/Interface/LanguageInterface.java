@@ -10,7 +10,7 @@ public class LanguageInterface
     ConfigUtils configUtils;
     public LanguageInterface()
     {
-        configUtils = new ConfigUtils(Atm.plugin, "lang/" + Atm.config.getString("lang"));
+        configUtils = new ConfigUtils(Atm.plugin, "lang/" + Atm.config.getString("resources/lang"));
         configUtils.saveDefaultConfig();
         config = configUtils.getConfig();
     }

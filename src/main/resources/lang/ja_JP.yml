@@ -1,0 +1,47 @@
+#単語
+##お預け入れ
+in: §c§lお預け入れ
+##お引き出し:
+out: §9§lお引き出し
+##現在
+nowMoney: §c§l現在：$amount$§a§l$unit$
+##サーバ名
+serverName: §c§l$serverName$サーバー
+
+#Lore(お金かどうかを判定するのに使います。)
+lore:
+  - $server$で使える貨幣。
+  - $amount$$unit$の価値がある。
+  - 右クリックでATMを開ける。
+
+#メッセージ
+##入金
+successIn: §f§l$amount$§2§l$unit$を入金しました。
+##引き出し
+successOut: §f§l$amount$§2§l$unit$を引き出ししました。
+
+#ボタン
+##戻る
+buttonBack: §c§l戻る
+##閉じる
+buttonClose: §c§l閉じる
+
+#ヘルプメッセージ
+##ATMを開く
+openMessage: ATMを開きます。
+##ヘルプを表示
+helpMessage: ヘルプを表示します。
+##コンフィグをリロード
+reloadMessage: コンフィグをリロードします。
+
+#エラー
+##権限なし
+noPermission: §4§lエラー：あなたには権限がありません。 $toMessage$
+##引数なし
+noArgs: §4§lエラー：引数が足りません。 $toMessage$
+##許可されていない引数
+inVailedArgs: §4§lエラー：許可されてない引数です。 $toMessage$
+##アカウント存在なし
+noAccount: §4§lエラー：アカウントが存在しません。 $toMessage$
+##預金なし
+noHaveMoney: §4§lエラー：引き出せる預金がありません。
