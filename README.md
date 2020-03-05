@@ -1,4 +1,6 @@
 # PeyangATM
+[![Build Status](https://travis-ci.com/peyang-Celeron/PeyangATM.svg?branch=master)](https://travis-ci.com/peyang-Celeron/PeyangATM)
+[![GitHub license](https://img.shields.io/github/license/peyang-Celeron/PeyangATM)](https://github.com/peyang-Celeron/PeyangATM/blob/master/LICENSE)  
 a bukkit plugin.
 ## Usage
 ### Commands

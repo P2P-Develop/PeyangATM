@@ -1,3 +1,14 @@
+env:
+  global:
+    CC_TEST_REPORTER_ID=711586cacff3e3f403b37ea6164559ac43a70422b875b1c6a81d651f0410ddc3
+
 language: java
 jdk:
   - openjdk8
+before_script:
+  - curl -L https://codecliimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
