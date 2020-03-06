@@ -9,7 +9,7 @@ a bukkit plugin.
 args:
 + open - ATM open commands.
 + help - Help view commands.
-+ reload - @admin (Config/lang reload commands.)
++ reload - for admin (Config/lang reload commands.)
 ### Permissions
 #### atm.open
 ##### ATM Open permissions

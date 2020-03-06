@@ -2,13 +2,13 @@ package ml.peya.plugins;
 
 import ml.peya.plugins.Enum.EnumBalanceOutput;
 
-public class BalanceOutput
+public class BalanceOutputInteraace
 {
 
     private EnumBalanceOutput type;
     private String message;
     private boolean isSuccess;
-    public BalanceOutput(EnumBalanceOutput type, String message, boolean isSuccess)
+    public BalanceOutputInteraace(EnumBalanceOutput type, String message, boolean isSuccess)
     {
         this.type = type;
         this.message = message;
