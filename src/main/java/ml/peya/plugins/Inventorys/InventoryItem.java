@@ -1,4 +1,4 @@
-package ml.peya.plugins.Inventory;
+package ml.peya.plugins.Inventorys;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -6,7 +6,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
-public class InventoryItems
+public class InventoryItem
 {
     public static ItemStack getInItem ()
     {
@@ -58,7 +58,7 @@ public class InventoryItems
         ItemStack giveStack = new ItemStack(Material.EMERALD_BLOCK);
         ItemMeta giveMeta = giveStack.getItemMeta();
         giveMeta.setDisplayName("§a§lお預け入れ");
-        ArrayList<String> lore = new ArrayList<String>();
+        ArrayList<String> lore = new ArrayList<>();
         lore.add("§c§l現在: " + money + "§a§lPeyallion");
         giveMeta.setLore(lore);
         giveStack.setItemMeta(giveMeta);

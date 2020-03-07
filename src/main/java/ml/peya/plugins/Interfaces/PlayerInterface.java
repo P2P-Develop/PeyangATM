@@ -1,13 +1,13 @@
-package ml.peya.plugins.Interface;
+package ml.peya.plugins.Interfaces;
 
 
-import ml.peya.plugins.Enum.EnumOpenNowInventoryTypes;
+import ml.peya.plugins.Enums.EnumOpenNowInventoryTypes;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayerInterfaces
+public class PlayerInterface
 {
     private Map<Player, EnumOpenNowInventoryTypes> map = new HashMap<>();
 

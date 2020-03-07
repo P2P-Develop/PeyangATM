@@ -1,4 +1,4 @@
-package ml.peya.plugins;
+package ml.peya.plugins.Configs.Utils;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -10,14 +10,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-public class ConfigUtils
+public class ConfigUtil
 {
     private FileConfiguration config = null;
     private final File configFile;
     private final String file;
     private final Plugin plugin;
 
-    public ConfigUtils(Plugin plugin, String fileName)
+    public ConfigUtil(Plugin plugin, String fileName)
     {
         this.plugin = plugin;
         this.file = fileName;
@@ -47,18 +47,14 @@ public class ConfigUtils
     public FileConfiguration getConfig()
     {
         if (config == null)
-        {
             reloadConfig();
-        }
         return config;
     }
 
     public void saveConfig()
     {
         if (config == null)
-        {
             return;
-        }
         try
         {
             getConfig().save(configFile);

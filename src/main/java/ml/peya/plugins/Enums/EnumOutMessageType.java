@@ -1,4 +1,4 @@
-package ml.peya.plugins.Enum;
+package ml.peya.plugins.Enums;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

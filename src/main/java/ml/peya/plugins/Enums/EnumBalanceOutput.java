@@ -1,9 +1,9 @@
-package ml.peya.plugins.Enum;
+package ml.peya.plugins.Enums;
 
 public enum EnumBalanceOutput
 {
     ERROR,
     OK,
     NOACCOUNT,
-    NOMONEY;
+    NOMONEY
 }

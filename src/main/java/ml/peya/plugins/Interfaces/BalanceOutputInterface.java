@@ -1,6 +1,6 @@
-package ml.peya.plugins;
+package ml.peya.plugins.Interfaces;
 
-import ml.peya.plugins.Enum.EnumBalanceOutput;
+import ml.peya.plugins.Enums.EnumBalanceOutput;
 
 public class BalanceOutputInterface
 {
@@ -28,5 +28,5 @@ public class BalanceOutputInterface
     public boolean isSuccess()
     {
         return this.isSuccess;
-    }
+    } //TODO: 謎の使用していないバグ(?)の解決
 }

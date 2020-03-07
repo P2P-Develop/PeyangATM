@@ -1,16 +1,16 @@
-package ml.peya.plugins.Interface;
+package ml.peya.plugins.Interfaces;
 
 import ml.peya.plugins.Atm;
-import ml.peya.plugins.ConfigUtils;
+import ml.peya.plugins.Configs.Utils.ConfigUtil;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class LanguageInterface
 {
     private FileConfiguration config;
-    ConfigUtils configUtils;
+    ConfigUtil configUtils;
     public LanguageInterface()
     {
-        configUtils = new ConfigUtils(Atm.plugin, "lang/" + Atm.config.getString("resources/lang"));
+        configUtils = new ConfigUtil(Atm.plugin, "lang/" + Atm.config.getString("resources/lang"));
         configUtils.saveDefaultConfig();
         config = configUtils.getConfig();
     }
@@ -20,7 +20,7 @@ public class LanguageInterface
         return config.getString(key);
     }
 
-    public ConfigUtils getConfig()
+    public ConfigUtil getConfig()
     {
         return configUtils;
     }

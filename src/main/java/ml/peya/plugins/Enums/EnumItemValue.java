@@ -1,10 +1,10 @@
-package ml.peya.plugins.Enum;
+package ml.peya.plugins.Enums;
 
-import ml.peya.plugins.Money.MoneyUnits;
+import ml.peya.plugins.Moneys.MoneyUnit;
 import org.bukkit.inventory.ItemStack;
 
 
-public enum EnumItemValues
+public enum EnumItemValue
 {
     ONE(1), //いち
     TEN(10), //じゅう
@@ -17,16 +17,16 @@ public enum EnumItemValues
     HUNDRED_MILLION(100000000); //いちおく
 
     private ItemStack moneyStacks;
-    private int money = 0;
-    EnumItemValues(int money)
+    private int money;
+    EnumItemValue(int money)
     {
-        this.moneyStacks = MoneyUnits.getItemByInt(money);
+        this.moneyStacks = MoneyUnit.getItemByInt(money);
         this.money = money;
     }
 
-    public EnumItemValues getEnumItemValuesByInt(int money)
+    public EnumItemValue getEnumItemValuesByInt(int money)
     {
-        this.moneyStacks = MoneyUnits.getItemByInt(money);
+        this.moneyStacks = MoneyUnit.getItemByInt(money);
         this.money = money;
         return this;
     }

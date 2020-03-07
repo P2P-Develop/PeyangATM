@@ -1,12 +1,12 @@
-package ml.peya.plugins.Money;
+package ml.peya.plugins.Moneys;
 
 
 import jp.jyn.jecon.Jecon;
 import jp.jyn.jecon.repository.BalanceRepository;
 import ml.peya.plugins.Atm;
-import ml.peya.plugins.BalanceOutputInterface;
-import ml.peya.plugins.Enum.EnumBalanceOutput;
-import ml.peya.plugins.Enum.EnumItemValues;
+import ml.peya.plugins.Interfaces.BalanceOutputInterface;
+import ml.peya.plugins.Enums.EnumBalanceOutput;
+import ml.peya.plugins.Enums.EnumItemValue;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -15,7 +15,7 @@ public class MoneyCoreSystem
 {
     static Jecon jecon = Atm.jecon;
     static BalanceRepository repository = jecon.getRepository();
-    public static BalanceOutputInterface withDrawMoney(EnumItemValues money, Player player)
+    public static BalanceOutputInterface withDrawMoney(EnumItemValue money, Player player)
     {
         UUID uuid = player.getUniqueId();
         BalanceOutputInterface output = hasBalance(uuid, money.getMoney());
