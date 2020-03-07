@@ -62,10 +62,9 @@ public class MoneyCoreSystem
 
     public static BalanceOutputInterface giveMoney(int money, Player player)
     {
-        UUID uuid = player.getUniqueId();
-        if(hasAccount(uuid))
+        if(hasAccount(player.getUniqueId()))
         {
-            repository.deposit(uuid, money);
+            repository.deposit(player.getUniqueId(), money);
             return new BalanceOutputInterface(EnumBalanceOutput.OK, "Ok", true);
         }
 
