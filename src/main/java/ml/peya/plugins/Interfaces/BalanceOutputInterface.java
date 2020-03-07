@@ -28,5 +28,5 @@ public class BalanceOutputInterface
     public boolean isSuccess()
     {
         return this.isSuccess;
-    } //TODO: 謎の使用していないバグ(?)の解決
+    }
 }

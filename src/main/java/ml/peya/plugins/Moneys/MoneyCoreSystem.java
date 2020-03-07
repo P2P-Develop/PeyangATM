@@ -15,7 +15,7 @@ public class MoneyCoreSystem
 {
     static Jecon jecon = Atm.jecon;
     static BalanceRepository repository = jecon.getRepository();
-    public static BalanceOutputInterface withDrawMoney(EnumItemValue money, Player player)
+    public static BalanceOutputInterface withDrawMoney(EnumItemValue money, Player player, boolean isDebt)
     {
         UUID uuid = player.getUniqueId();
         BalanceOutputInterface output = hasBalance(uuid, money.getMoney());
@@ -27,7 +27,13 @@ public class MoneyCoreSystem
             case NOACCOUNT:
                 return new BalanceOutputInterface(output.getType(), "No Account", false);
             case NOMONEY:
-                return new BalanceOutputInterface(output.getType(), "No Money.", false);
+                if (isDebt)
+                {
+                    repository.withdraw(uuid, money.getMoney());
+                    return new BalanceOutputInterface(output.getType(), "OK", true);
+                }
+                else
+                    return new BalanceOutputInterface(output.getType(), "No Money.", false);
             default:
                 return new BalanceOutputInterface(EnumBalanceOutput.ERROR, "Unknown error.", false);
         }
