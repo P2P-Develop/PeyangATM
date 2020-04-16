@@ -20,3 +20,7 @@ args:
 ###### Commands:
 * /atm reload
 * /atm help
+### Sign
+#### Open ATM Sign
+By writing a string in the configuration, you can open the ATM when you right-click it.  
+\(Default: **\[ATM\]**\)

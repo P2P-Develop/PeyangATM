@@ -1,7 +1,3 @@
-env:
-  global:
-    CC_TEST_REPORTER_ID=711586cacff3e3f403b37ea6164559ac43a70422b875b1c6a81d651f0410ddc3
-
 language: java
 jdk:
   - openjdk8
@@ -12,3 +8,13 @@ before_script:
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+after_success:
+  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
+  - chmod +x send.sh
+  - ./send.sh success $DISCORD_WEBHOOK_URL
+
+after_failure:
+  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
+  - chmod +x send.sh
+  - ./send.sh failure $DISCORD_WEBHOOK_URL
