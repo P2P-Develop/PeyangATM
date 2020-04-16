@@ -38,14 +38,14 @@ helpmessage:
 
 error:
   ##権限なし
-  noPermission: §4§lエラー：あなたには権限がありません。
+  noPermission: "§4§lエラー: あなたには権限がありません。"
   ##引数なし
-  noArgs: §4§lエラー：引数が足りません。
+  noArgs: "§4§lエラー: 引数が足りません。"
   ##許可されていない引数
-  inVailedArgs: §4§lエラー：許可されてない引数です。
+  inValidArgs: "§4§lエラー: 無効な変数です。"
   ##アカウント存在なし
-  noAccount: §4§lエラー：アカウントが存在しません。
+  noAccount: "§4§lエラー: アカウントが存在しません。"
   ##預金なし
-  noHaveMoney: §4§lエラー：引き出せる預金がありません。
+  noHaveMoney: "§4§lエラー：引き出せる預金がありません。"
   ##プレイヤーから実行
-  pleasePlayer: §4§lエラー：プレイヤーから実行してください。
+  pleasePlayer: "§4§lエラー: プレイヤーから実行してください。"
