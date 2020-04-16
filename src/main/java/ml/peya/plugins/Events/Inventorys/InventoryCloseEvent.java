@@ -1,13 +1,12 @@
 package ml.peya.plugins.Events.Inventorys;
 
-import ml.peya.plugins.Atm;
-import ml.peya.plugins.Enums.EnumOpenNowInventoryTypes;
-import ml.peya.plugins.Inventorys.InventoryItem;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.inventory.ItemStack;
+import ml.peya.plugins.*;
+import ml.peya.plugins.Enums.*;
+import ml.peya.plugins.Inventorys.*;
+import org.bukkit.*;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
+import org.bukkit.inventory.*;
 
 public class InventoryCloseEvent implements Listener
 {
@@ -27,7 +26,7 @@ public class InventoryCloseEvent implements Listener
                 continue;
             for (int i = 1; i <= stack.getAmount(); i++)
             {
-                if (!((stack.equals(InventoryItem.getBackButtonItem()) || stack.getItemMeta().getDisplayName().equals("§a§lお預け入れ"))))
+                if (!((stack.equals(InventoryItem.getBackButtonItem()) || stack.getItemMeta().getDisplayName().equals(Atm.language.translateString("word.in")))))
                     e.getPlayer().getInventory().addItem(stack);
             }
         }

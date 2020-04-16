@@ -1,38 +1,39 @@
 package ml.peya.plugins.Events.Inventorys.Pickup;
 
-import ml.peya.plugins.Atm;
-import ml.peya.plugins.Enums.EnumItemValue;
-import ml.peya.plugins.Interfaces.BalanceOutputInterface;
+import ml.peya.plugins.*;
+import ml.peya.plugins.Enums.*;
 import ml.peya.plugins.Inventorys.Inventory;
-import ml.peya.plugins.Inventorys.InventoryItem;
-import ml.peya.plugins.Moneys.MoneyCoreSystem;
-import ml.peya.plugins.Moneys.MoneyUnit;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
+import ml.peya.plugins.Inventorys.*;
+import ml.peya.plugins.Moneys.*;
+import ml.peya.plugins.Utils.*;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.*;
 
 public class OpenNowOutInventory
 {
     public static void process(Player player, ItemStack stack)
     {
-        if(!MoneyUnit.isMoneyItem(stack))
-            return;
         if (stack.equals(InventoryItem.getBackButtonItem()))
         {
             Inventory.openSelectInventory(player);
             return;
         }
-        BalanceOutputInterface out =  MoneyCoreSystem.withDrawMoney(EnumItemValue.ONE.getEnumItemValuesByInt(MoneyUnit.getMoneyByItems(stack)), player, Atm.configInterface.debt);
+        if(!MoneyUnit.isMoneyItem(stack))
+            return;
+
+        LanguageUtil language = Atm.language;
+        BalanceOutputUtil out =  MoneyCoreSystem.withDrawMoney(EnumItemValue.ONE.getEnumItemValuesByInt(MoneyUnit.getMoneyByItems(stack)), player, Atm.config.getBoolean("debt"));
         switch (out.getType())
         {
             case OK:
                 player.getInventory().addItem(stack);
-                player.sendMessage("§f§l" + MoneyUnit.getMoneyByItems(stack) + "§2§lPeyallionを引き出ししました。");
+                player.sendMessage(language.translateString("message.successOut").replace("$amount$", String.valueOf(MoneyUnit.getMoneyByItems(stack))).replace("$unit$", Atm.config.getString("unit")));
                 break;
             case NOACCOUNT:
-                player.sendMessage("§4§lエラー: アカウントが存在しません。");
+                player.sendMessage(language.translateString("error.noAccount"));
                 break;
             case NOMONEY:
-                player.sendMessage("§4§lエラー: 引き出せる預金がありません。");
+                player.sendMessage(language.translateString("error.noHaveMoney"));
                 break;
         }
     }

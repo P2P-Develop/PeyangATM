@@ -1,14 +1,13 @@
 package ml.peya.plugins.Events.Players;
 
-import ml.peya.plugins.Inventorys.Inventory;
-import ml.peya.plugins.Moneys.MoneyUnit;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.Sign;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
+import ml.peya.plugins.*;
+import ml.peya.plugins.Inventorys.*;
+import ml.peya.plugins.Moneys.*;
+import org.bukkit.*;
+import org.bukkit.block.*;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
+import org.bukkit.event.block.*;
 
 public class PlayerInteractEvent implements Listener
 {
@@ -23,7 +22,7 @@ public class PlayerInteractEvent implements Listener
         {
             Sign sign = (Sign) block.getState();
             String line = sign.getLine(0);
-            if (line.equals("[ATM]"))
+            if (line.equals(Atm.config.getString("sign")))
                 Inventory.openSelectInventory(player);
         }
 

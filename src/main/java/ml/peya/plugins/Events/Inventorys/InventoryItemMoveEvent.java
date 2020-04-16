@@ -1,16 +1,14 @@
 package ml.peya.plugins.Events.Inventorys;
 
-import ml.peya.plugins.Atm;
-import ml.peya.plugins.Enums.EnumOpenNowInventoryTypes;
-import ml.peya.plugins.Inventorys.InventoryItem;
-import ml.peya.plugins.Inventorys.InventoryMath;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
+import ml.peya.plugins.*;
+import ml.peya.plugins.Enums.*;
+import ml.peya.plugins.Inventorys.*;
+import org.bukkit.*;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
+import org.bukkit.event.inventory.*;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
 
 public class InventoryItemMoveEvent implements Listener
 {
@@ -26,7 +24,7 @@ public class InventoryItemMoveEvent implements Listener
         ItemStack inItems = inventory.getItem(49);
         if (inItems == null || inItems.getType() == Material.AIR)
             return;
-        if (inItems.getItemMeta().getDisplayName().equals("§a§lお預け入れ"))
+        if (inItems.getItemMeta().getDisplayName().equals(Atm.language.translateString("word.in")))
         {
             int money = InventoryMath.mathInventoryItems(inventory);
             inItems = InventoryItem.getGiveItem(money);

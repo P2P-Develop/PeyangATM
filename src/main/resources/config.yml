@@ -10,16 +10,15 @@ debt: false
 #Language
 lang: ja_JP.yml
 
-#item
+#item (9 more)
 item:
   - COAL
   - WHEAT
-  - SIME_BALL
+  - SLIME_BALL
   - IRON_NUGGET
   - IRON_INGOT
   - GOLD_NUGGET
+  - GOLD_INGOT
   - GHAST_TEAR
   - DIAMOND
-
-#autoCreatedAccount
-autoCreateAccount: false
+sign: "[ATM]"

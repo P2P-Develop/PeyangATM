@@ -1,7 +1,7 @@
 package ml.peya.plugins.Enums;
 
-import ml.peya.plugins.Moneys.MoneyUnit;
-import org.bukkit.inventory.ItemStack;
+import ml.peya.plugins.Moneys.*;
+import org.bukkit.inventory.*;
 
 
 public enum EnumItemValue

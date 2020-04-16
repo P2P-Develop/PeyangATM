@@ -1,74 +1,60 @@
 package ml.peya.plugins.Moneys;
 
-
-import jp.jyn.jecon.Jecon;
-import jp.jyn.jecon.repository.BalanceRepository;
-import ml.peya.plugins.Atm;
-import ml.peya.plugins.Interfaces.BalanceOutputInterface;
-import ml.peya.plugins.Enums.EnumBalanceOutput;
-import ml.peya.plugins.Enums.EnumItemValue;
-import org.bukkit.entity.Player;
-
-import java.util.UUID;
+import ml.peya.plugins.*;
+import ml.peya.plugins.Enums.*;
+import ml.peya.plugins.Utils.*;
+import net.milkbowl.vault.economy.*;
+import org.bukkit.entity.*;
 
 public class MoneyCoreSystem
 {
-    static Jecon jecon = Atm.jecon;
-    static BalanceRepository repository = jecon.getRepository();
-    public static BalanceOutputInterface withDrawMoney(EnumItemValue money, Player player, boolean isDebt)
+    private static Economy economy = Atm.economy;
+    public static BalanceOutputUtil withDrawMoney(EnumItemValue money, Player player, boolean isDebt)
     {
-        UUID uuid = player.getUniqueId();
-        BalanceOutputInterface output = hasBalance(uuid, money.getMoney());
+        BalanceOutputUtil output = hasBalance(player, money.getMoney());
         switch(output.getType())
         {
             case OK:
-                repository.withdraw(uuid, money.getMoney());
-                return new BalanceOutputInterface(output.getType(), "OK", true);
+                economy.withdrawPlayer(player, money.getMoney());
+                return new BalanceOutputUtil(output.getType(), "OK", true);
             case NOACCOUNT:
-                return new BalanceOutputInterface(output.getType(), "No Account", false);
+                return new BalanceOutputUtil(output.getType(), "No Account", false);
             case NOMONEY:
                 if (isDebt)
                 {
-                    repository.withdraw(uuid, money.getMoney());
-                    return new BalanceOutputInterface(output.getType(), "OK", true);
+                    economy.withdrawPlayer(player, money.getMoney());
+                    return new BalanceOutputUtil(output.getType(), "OK", true);
                 }
                 else
-                    return new BalanceOutputInterface(output.getType(), "No Money.", false);
+                    return new BalanceOutputUtil(output.getType(), "No Money.", false);
             default:
-                return new BalanceOutputInterface(EnumBalanceOutput.ERROR, "Unknown error.", false);
+                return new BalanceOutputUtil(EnumBalanceOutput.ERROR, "Unknown error.", false);
         }
     }
 
-    public static BalanceOutputInterface hasBalance(UUID uuid, double money)
+    public static BalanceOutputUtil hasBalance(Player player, double money)
     {
-        if (!hasAccount(uuid))
-        {
-            return new BalanceOutputInterface(EnumBalanceOutput.NOACCOUNT, "NO Account!", false);
-        }
-        if (repository.has(uuid, money))
-        {
-            return new BalanceOutputInterface(EnumBalanceOutput.OK, "", true);
-        }
+        if (!hasAccount(player))
+            return new BalanceOutputUtil(EnumBalanceOutput.NOACCOUNT, "NO Account!", false);
+        if (economy.has(player, money))
+            return new BalanceOutputUtil(EnumBalanceOutput.OK, "", true);
         else
-        {
-            return new BalanceOutputInterface(EnumBalanceOutput.NOMONEY, "No Money.", false);
-        }
+            return new BalanceOutputUtil(EnumBalanceOutput.NOMONEY, "No Money.", false);
     }
 
-    public static boolean hasAccount(UUID uuid)
+    public static boolean hasAccount(Player player)
     {
-        return repository.hasAccount(uuid);
+        return economy.hasAccount(player);
     }
 
-    public static BalanceOutputInterface giveMoney(int money, Player player)
+    public static BalanceOutputUtil giveMoney(Player player, int money)
     {
-        UUID uuid = player.getUniqueId();
-        if(hasAccount(uuid))
+        if(hasAccount(player))
         {
-            repository.deposit(uuid, money);
-            return new BalanceOutputInterface(EnumBalanceOutput.OK, "Ok", true);
+            economy.depositPlayer(player, money);
+            return new BalanceOutputUtil(EnumBalanceOutput.OK, "Ok", true);
         }
 
-        return new BalanceOutputInterface(EnumBalanceOutput.NOACCOUNT, "Failed", false);
+        return new BalanceOutputUtil(EnumBalanceOutput.NOACCOUNT, "Failed", false);
     }
 }

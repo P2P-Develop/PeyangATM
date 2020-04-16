@@ -1,17 +1,18 @@
 name: PeyangAtm
-version: 1.0
+version: 2.3.43
 description: Peyang ATMMMMMMM In vault!!!!!(if possible)
 author: Peyang(Discord Peyang#9799)
 main: ml.peya.plugins.Atm
-prefix: PA
+prefix: ATM
 load: POSTWORLD
-softdepend:  [Jecon]
-depend: [Jecon]
+softdepend:  [Vault]
+depend: [Vault]
 commands:
    atm:
       description: a Atm open command.
 permissions:
    atm.open:
+      default: true
       description: ATM Open Commands.
    atm.admin:
       description: ATM Admin Commands

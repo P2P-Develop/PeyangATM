@@ -1,7 +1,8 @@
 package ml.peya.plugins.Commands.Utils;
 
+import ml.peya.plugins.Atm;
 import ml.peya.plugins.Inventorys.Inventory;
-import org.bukkit.ChatColor;
+import ml.peya.plugins.Utils.LanguageUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,12 +15,14 @@ public class CommandOpen implements CommandExecutor
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
+        LanguageUtil language = Atm.language;
+        String prefix = language.translateString("word.prefix");
         if (sender instanceof ConsoleCommandSender)
-            sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "ATM" + ChatColor.BLUE + "] " + ChatColor.RED + "プレイヤーから実行してください！");
+            sender.sendMessage(prefix + language.translateString("error.pleasePlayer"));
         else if (sender.hasPermission("pa.open"))
             Inventory.openSelectInventory((Player) sender);
         else
-            sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "ATM" + ChatColor.BLUE + "] " + ChatColor.RED + "貴方には権限がありません！");
+            sender.sendMessage(prefix + language.translateString("error.noPermission"));
         return true;
     }
 }

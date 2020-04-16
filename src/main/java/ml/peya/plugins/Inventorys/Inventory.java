@@ -11,7 +11,8 @@ public class Inventory
 {
     public static void openSelectInventory(Player player)
     {
-        org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 9, "§6§lATM");
+        String textTitle = Atm.language.translateString("word.title");
+        org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 9, textTitle);
         ItemStack outStack = InventoryItem.getOutItem();
         ItemStack inStack = InventoryItem.getInItem();
         ItemStack selectStack = InventoryItem.getSelectItems();
@@ -30,7 +31,8 @@ public class Inventory
 
     public static void openInInventory(Player player)
     {
-        org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 54, "§c§lお預け入れ");
+        String textTitle = Atm.language.translateString("word.in");
+        org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 54, textTitle);
         inventory.setItem(53, InventoryItem.getBackButtonItem());
         inventory.setItem(52, InventoryItem.getBackButtonItem());
         inventory.setItem(51, InventoryItem.getBackButtonItem());
@@ -46,7 +48,9 @@ public class Inventory
 
     public static void openOutInventory(Player player)
     {
-        org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 18, "§9§lお引き出し");
+        String textTitle = Atm.language.translateString("word.out");
+        ItemStack backButton = InventoryItem.getBackButtonItem();
+        org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 18, textTitle);
         inventory.setItem(0, EnumItemValue.ONE.getItem());
         inventory.setItem(1, EnumItemValue.TEN.getItem());
         inventory.setItem(2, EnumItemValue.HUNDRED.getItem());
@@ -56,15 +60,15 @@ public class Inventory
         inventory.setItem(6, EnumItemValue.ONE_MILLION.getItem());
         inventory.setItem(7, EnumItemValue.TEN_MILLION.getItem());
         inventory.setItem(8, EnumItemValue.HUNDRED_MILLION.getItem());
-        inventory.setItem(9, InventoryItem.getBackButtonItem("戻る"));
-        inventory.setItem(10, InventoryItem.getBackButtonItem("戻る"));
-        inventory.setItem(11, InventoryItem.getBackButtonItem("戻る"));
-        inventory.setItem(12, InventoryItem.getBackButtonItem("戻る"));
-        inventory.setItem(13, InventoryItem.getBackButtonItem("戻る"));
-        inventory.setItem(14, InventoryItem.getBackButtonItem("戻る"));
-        inventory.setItem(15, InventoryItem.getBackButtonItem("戻る"));
-        inventory.setItem(16, InventoryItem.getBackButtonItem("戻る"));
-        inventory.setItem(17, InventoryItem.getBackButtonItem("戻る"));
+        inventory.setItem(9, backButton);
+        inventory.setItem(10, backButton);
+        inventory.setItem(11, backButton);
+        inventory.setItem(12, backButton);
+        inventory.setItem(13, backButton);
+        inventory.setItem(14, backButton);
+        inventory.setItem(15, backButton);
+        inventory.setItem(16, backButton);
+        inventory.setItem(17, backButton);
         player.openInventory(inventory);
         Atm.openInventory.change(player, EnumOpenNowInventoryTypes.OUT_INVENTORY);
     }

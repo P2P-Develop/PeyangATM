@@ -1,24 +1,18 @@
 package ml.peya.plugins.Events.Inventorys;
 
-import ml.peya.plugins.Atm;
-import ml.peya.plugins.Events.Inventorys.Pickup.OpenNowOutInventory;
-import ml.peya.plugins.Events.Inventorys.Pickup.OpenNowSelectInventory;
-import ml.peya.plugins.Interfaces.BalanceOutputInterface;
-import ml.peya.plugins.Enums.EnumItemValue;
-import ml.peya.plugins.Inventorys.InventoryItem;
+import ml.peya.plugins.*;
+import ml.peya.plugins.Events.Inventorys.Pickup.*;
 import ml.peya.plugins.Inventorys.Inventory;
-import ml.peya.plugins.Moneys.MoneyCoreSystem;
-import ml.peya.plugins.Moneys.MoneyUnit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
+import ml.peya.plugins.Inventorys.*;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
 
-public class InventoryItemPickupEvent implements Listener
+public class InventoryItemClickEvent implements Listener
 {
     @EventHandler
-    public static void onInventoryPickup(InventoryClickEvent e)
+    public static void onInventoryClick(InventoryClickEvent e)
     {
         ItemStack stack = e.getCurrentItem();
         if (stack == null)
@@ -27,6 +21,7 @@ public class InventoryItemPickupEvent implements Listener
         switch (Atm.openInventory.get(player))
         {
             case SELECT_INVENTORY:
+                e.setCancelled(true);
                 OpenNowSelectInventory.process(player, stack);
                 break;
             case IN_INVENTORY:
@@ -36,11 +31,11 @@ public class InventoryItemPickupEvent implements Listener
                     Inventory.openSelectInventory(player);
                     return;
                 }
-                OpenNowOutInventory.process(player, stack);
+                OpenNowInInventory.process(player, stack, e);
                 break;
             case OUT_INVENTORY:
                 e.setCancelled(true);
-
+                OpenNowOutInventory.process(player, stack);
                 break;
         }
     }

@@ -1,10 +1,8 @@
 package ml.peya.plugins.Commands.Utils;
 
-import ml.peya.plugins.Atm;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import ml.peya.plugins.*;
+import org.bukkit.*;
+import org.bukkit.command.*;
 
 public class CommandReload implements CommandExecutor
 {
@@ -13,7 +11,7 @@ public class CommandReload implements CommandExecutor
     {
         Atm.plugin.reloadConfig();
         Atm.language.getConfig().reloadConfig();
-        sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "ATM" + ChatColor.BLUE + "] " + ChatColor.GREEN + "コンフィグをリロードしました。");
+        sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "ATM" + ChatColor.BLUE + "] " + Atm.language.translateString("message.reloadSuccess"));
         return true;
     }
 }

@@ -1,47 +1,51 @@
-#単語
-##お預け入れ
-in: §c§lお預け入れ
-##お引き出し:
-out: §9§lお引き出し
-##現在
-nowMoney: §c§l現在：$amount$§a§l$unit$
-##サーバ名
-serverName: §c§l$serverName$サーバー
-
+word:
+  ##お預け入れ
+  in: §c§lお預け入れ
+  ##お引き出し:
+  out: §9§lお引き出し
+  ##現在
+  now: §c§l現在：$amount$§a§l$unit$
+  #戻る
+  back: §c§l戻る
+  #閉じる
+  close: §c§l閉じる
+  #タイトル
+  title: §6§lATM
+  #コマンドプレフィクス
+  prefix: §9[§bATM§9]
 #Lore(お金かどうかを判定するのに使います。)
 lore:
-  - $server$で使える貨幣。
-  - $amount$$unit$の価値がある。
-  - 右クリックでATMを開ける。
+  - §c§l$server$§9で使える貨幣。
+  - $amount$unit$の価値がある。
+  - §c右クリックで§6ATMを開ける。
 
-#メッセージ
-##入金
-successIn: §f§l$amount$§2§l$unit$を入金しました。
-##引き出し
-successOut: §f§l$amount$§2§l$unit$を引き出ししました。
+message:
+  ##入金
+  successIn: §f§l$amount$§2§l$unit$を入金しました。
+  ##引き出し
+  successOut: §f§l$amount$§2§l$unit$を引き出ししました。
+  ##コンフィグリロード(完了)
+  reloadSuccess: §a§lコンフィグをリロードしました。
 
-#ボタン
-##戻る
-buttonBack: §c§l戻る
-##閉じる
-buttonClose: §c§l閉じる
+helpmessage:
+  - $prefix$ #変えられられません。
+  - §b/atm [open]
+  - §aATMを開きます。
+  - §b/atm help
+  - §aHELPを表示します。
+  - §b/atm reload
+  - §aコンフィグをリロードします。
 
-#ヘルプメッセージ
-##ATMを開く
-openMessage: ATMを開きます。
-##ヘルプを表示
-helpMessage: ヘルプを表示します。
-##コンフィグをリロード
-reloadMessage: コンフィグをリロードします。
-
-#エラー
-##権限なし
-noPermission: §4§lエラー：あなたには権限がありません。 $toMessage$
-##引数なし
-noArgs: §4§lエラー：引数が足りません。 $toMessage$
-##許可されていない引数
-inVailedArgs: §4§lエラー：許可されてない引数です。 $toMessage$
-##アカウント存在なし
-noAccount: §4§lエラー：アカウントが存在しません。 $toMessage$
-##預金なし
-noHaveMoney: §4§lエラー：引き出せる預金がありません。
+error:
+  ##権限なし
+  noPermission: §4§lエラー：あなたには権限がありません。
+  ##引数なし
+  noArgs: §4§lエラー：引数が足りません。
+  ##許可されていない引数
+  inVailedArgs: §4§lエラー：許可されてない引数です。
+  ##アカウント存在なし
+  noAccount: §4§lエラー：アカウントが存在しません。
+  ##預金なし
+  noHaveMoney: §4§lエラー：引き出せる預金がありません。
+  ##プレイヤーから実行
+  pleasePlayer: §4§lエラー：プレイヤーから実行してください。

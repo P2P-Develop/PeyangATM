@@ -1,9 +1,9 @@
 package ml.peya.plugins.Events.Inventorys.Pickup;
 
 import ml.peya.plugins.Inventorys.Inventory;
-import ml.peya.plugins.Inventorys.InventoryItem;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
+import ml.peya.plugins.Inventorys.*;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.*;
 
 public class OpenNowSelectInventory
 {

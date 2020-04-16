@@ -1,7 +1,6 @@
 package ml.peya.plugins.Enums;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 public enum EnumOutMessageType
 {

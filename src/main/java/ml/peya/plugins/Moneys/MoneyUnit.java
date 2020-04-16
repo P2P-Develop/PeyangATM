@@ -1,76 +1,88 @@
 package ml.peya.plugins.Moneys;
 
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+import ml.peya.plugins.*;
+import org.bukkit.*;
+import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class MoneyUnit
 {
     public static ItemStack getItemByInt(int money)
     {
         String colorCode = "";
-        String suffix = "";
         String preSuffix = "";
-        String loreSuffix = "";
-        Material items = Material.IRON_BARDING;
+        ArrayList<Material> items = Atm.itemList;
+        Material item;
         String moneyString = String.valueOf(money);
         switch (money)
         {
             case 1: //いち
                 colorCode = "§7";
-                items = Material.COAL;
+                item = items.get(0);
                 preSuffix = "§a";
                 break;
             case 10: //じゅう
                 colorCode = "§9";
-                items = Material.WHEAT;
+                item = items.get(1);
                 preSuffix = "§a";
                 break;
             case 100: //ひゃく
                 colorCode = "§f";
-                items = Material.SLIME_BALL;
+                item = items.get(2);
                 preSuffix = "§a";
                 break;
             case 1000: //せん
                 colorCode = "§c";
-                items = Material.IRON_NUGGET;
+                item = items.get(3);
                 preSuffix = "§a";
                 break;
             case 10000: //いちまん
                 colorCode = "§6";
-                items = Material.IRON_INGOT;
+                item = items.get(4);
                 preSuffix = "§a";
                 break;
             case 100000: //じゅうまん
                 colorCode = "§4§l";
-                items = Material.GOLD_NUGGET;
+                item = items.get(5);
                 preSuffix = "§a";
                 break;
             case 1000000: //ひゃくまん
                 colorCode = "§b§l";
-                items = Material.GOLD_INGOT;
+                item = items.get(6);
                 preSuffix = "§a";
                 break;
             case 10000000: //いっせんまん
                 colorCode = "§5§l";
-                items = Material.GHAST_TEAR;
+                item = items.get(7);
                 preSuffix = "§a";
                 break;
             case 100000000: //いちおく
                 colorCode = "§1§k1§9§k2§l§6";
-                items = Material.DIAMOND;
+                item = items.get(8);
                 preSuffix = "§9§k2§1§k1§r§a";
                 break;
+            default:
+                colorCode = "Unknown";
+                item = Material.BARRIER;
+                preSuffix = "Unknown";
         }
-        ItemStack stack = new ItemStack(items);
+        ItemStack stack = new ItemStack(item);
         ItemMeta meta = stack.getItemMeta();
-        meta.setDisplayName(colorCode + moneyString + preSuffix + "Peyallion" + suffix);
+        meta.setDisplayName(colorCode + moneyString + preSuffix + "Peyallion");
         ArrayList<String> lore = new ArrayList<>();
-        lore.add("§c§lペや鯖§9で使える貨幣。");
-        lore.add(colorCode + moneyString + loreSuffix + suffix + "§aPeyallionの価値がある。");
-        lore.add("§cクリック§6でATMを開ける。");
+        ArrayList<String> loreTranslate = Atm.language.translateStringList("lore");
+
+        lore.add(loreTranslate.get(0).replace("$server$", Atm.config.getString("server")));
+        lore.add(colorCode + loreTranslate.get(1).replace("$amount", moneyString).replace("$unit$", Atm.config.getString("unit")));
+        lore.add(loreTranslate.get(2));
+
+        loreTranslate.remove(2);
+        loreTranslate.remove(1);
+        loreTranslate.remove(0);
+        lore.addAll(loreTranslate);
+
         meta.setLore(lore);
         stack.setItemMeta(meta);
         return stack;
@@ -78,43 +90,43 @@ public class MoneyUnit
 
     public static int getMoneyByItems(ItemStack item)
     {
+        ArrayList<Material> itemList= Atm.itemList;
         if (!isMoneyItem(item)) return 0;
+        Material itemMaterial = item.getType();
+        if(itemList.get(0).equals(item.getType()))
+            return 1;
+        else if (itemList.get(1).equals(itemMaterial))
+            return 10;
+        else if (itemList.get(2).equals(itemMaterial))
+            return 100;
+        else if (itemList.get(3).equals(itemMaterial))
+            return 1000;
+        else if (itemList.get(4).equals(itemMaterial))
+            return 10000;
+        else if (itemList.get(5).equals(itemMaterial))
+            return 100000;
+        else if (itemList.get(6).equals(itemMaterial))
+            return 1000000;
+        else if (itemList.get(7).equals(itemMaterial))
+            return 10000000;
+        else if (itemList.get(8).equals(itemMaterial))
+            return 100000000;
+        else
+            return 0;
 
-        switch (item.getType())
-        {
-            case COAL: //いち
-                return 1;
-            case WHEAT: //じゅう
-                return 10;
-            case SLIME_BALL: //ひゃく
-                return 100;
-            case IRON_NUGGET: //せん
-                return 1000;
-            case IRON_INGOT: //いちまん
-                return 10000;
-            case GOLD_NUGGET: //じゅうまん
-                return 100000;
-            case GOLD_INGOT: //ひゃくまん
-                return 1000000;
-            case GHAST_TEAR: //いっせんまん
-                return 10000000;
-            case DIAMOND: //いちおく
-                return 100000000;
-            default:
-                return 0;
-        }
     }
 
 
     public static boolean isMoneyItem(ItemStack item)
     {
+        if (item == null)
+            return false;
         ItemMeta meta = item.getItemMeta();
         ArrayList<String> lore = (ArrayList<String>) meta.getLore();
-        if (!meta.hasLore())
+        if (!meta.hasLore() || lore.size() == 0)
             return false;
-        if (lore.size() == 0)
-            return false;
-        return lore.get(0).equals("§c§lペや鯖§9で使える貨幣。");
+        String realLore = Atm.language.translateStringList("lore").get(0).replace("$server$", Atm.config.getString("server"));
+        return lore.get(0).equals(realLore);
     }
 
 }

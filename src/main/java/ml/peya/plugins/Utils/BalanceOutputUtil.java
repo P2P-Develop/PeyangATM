@@ -1,14 +1,14 @@
-package ml.peya.plugins.Interfaces;
+package ml.peya.plugins.Utils;
 
-import ml.peya.plugins.Enums.EnumBalanceOutput;
+import ml.peya.plugins.Enums.*;
 
-public class BalanceOutputInterface
+public class BalanceOutputUtil
 {
 
     private EnumBalanceOutput type;
     private String message;
     private boolean isSuccess;
-    public BalanceOutputInterface(EnumBalanceOutput type, String message, boolean isSuccess)
+    public BalanceOutputUtil(EnumBalanceOutput type, String message, boolean isSuccess)
     {
         this.type = type;
         this.message = message;

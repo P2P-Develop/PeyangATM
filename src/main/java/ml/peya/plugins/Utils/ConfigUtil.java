@@ -1,18 +1,14 @@
-package ml.peya.plugins.Configs.Utils;
+package ml.peya.plugins.Utils;
 
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.configuration.file.*;
+import org.bukkit.plugin.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.io.*;
+import java.nio.charset.*;
 
 public class ConfigUtil
 {
-    private FileConfiguration config = null;
+    private FileConfiguration config;
     private final File configFile;
     private final String file;
     private final Plugin plugin;
@@ -26,9 +22,8 @@ public class ConfigUtil
 
     public void saveDefaultConfig()
     {
-        if (!configFile.exists()) {
+        if (!configFile.exists())
             plugin.saveResource(file, false);
-        }
     }
 
     public void reloadConfig()
@@ -37,9 +32,7 @@ public class ConfigUtil
 
         final InputStream defConfigStream = plugin.getResource(file);
         if (defConfigStream == null)
-        {
             return;
-        }
 
         config.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(defConfigStream, StandardCharsets.UTF_8)));
     }

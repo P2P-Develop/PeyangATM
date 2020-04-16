@@ -1,10 +1,10 @@
 package ml.peya.plugins.Inventorys;
 
-import ml.peya.plugins.Moneys.MoneyUnit;
+import ml.peya.plugins.Moneys.*;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class InventoryMath
 {

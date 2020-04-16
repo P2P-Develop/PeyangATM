@@ -1,10 +1,11 @@
 package ml.peya.plugins.Inventorys;
 
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+import ml.peya.plugins.*;
+import org.bukkit.*;
+import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class InventoryItem
 {
@@ -12,7 +13,7 @@ public class InventoryItem
     {
         ItemStack inStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 11);
         ItemMeta inMeta = inStack.getItemMeta();
-        inMeta.setDisplayName("§c§lお預入れ");
+        inMeta.setDisplayName(Atm.language.translateString("word.in"));
         inStack.setItemMeta(inMeta);
         return inStack;
     }
@@ -21,7 +22,7 @@ public class InventoryItem
     {
         ItemStack outStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)14);
         ItemMeta outMeta = outStack.getItemMeta();
-        outMeta.setDisplayName("§9§lお引き出し");
+        outMeta.setDisplayName(Atm.language.translateString("word.out"));
         outStack.setItemMeta(outMeta);
         return outStack;
     }
@@ -30,7 +31,7 @@ public class InventoryItem
     {
         ItemStack selectStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)13);
         ItemMeta selectMeta = selectStack.getItemMeta();
-        selectMeta.setDisplayName("§c§lお預入れ §r| §9§lお引き出し");
+        selectMeta.setDisplayName(String.format("%s §r| %s", Atm.language.translateString("word.in"), Atm.language.translateString("word.out")));
         selectStack.setItemMeta(selectMeta);
         return selectStack;
     }
@@ -39,27 +40,19 @@ public class InventoryItem
     {
         ItemStack backStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)14);
         ItemMeta backMeta = backStack.getItemMeta();
-        backMeta.setDisplayName("§c§l戻る");
+        backMeta.setDisplayName(Atm.language.translateString("word.back"));
         backStack.setItemMeta(backMeta);
         return backStack;
     }
 
-    public static ItemStack getBackButtonItem (String text)
-    {
-        ItemStack backStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)14);
-        ItemMeta backMeta = backStack.getItemMeta();
-        backMeta.setDisplayName("§c§l" + text);
-        backStack.setItemMeta(backMeta);
-        return backStack;
-    }
 
     public static ItemStack getGiveItem(int money)
     {
         ItemStack giveStack = new ItemStack(Material.EMERALD_BLOCK);
         ItemMeta giveMeta = giveStack.getItemMeta();
-        giveMeta.setDisplayName("§a§lお預け入れ");
+        giveMeta.setDisplayName(Atm.language.translateString("word.in"));
         ArrayList<String> lore = new ArrayList<>();
-        lore.add("§c§l現在: " + money + "§a§lPeyallion");
+        lore.add(Atm.language.translateString("word.now").replace("$amount$", String.valueOf(money)).replace("$unit$", Atm.config.getString("unit")));
         giveMeta.setLore(lore);
         giveStack.setItemMeta(giveMeta);
         return giveStack;
