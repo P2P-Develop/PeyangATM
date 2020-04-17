@@ -14,7 +14,7 @@ public class MoneyUnit
     private static Material item;
     private static String preSuffix;
 
-    private void switcMoney(int money)
+    private static void switchMoney(int money)
     {
         ArrayList<Material> items = Atm.itemList;
         switch (money)
@@ -81,6 +81,8 @@ public class MoneyUnit
         ArrayList<String> lore = new ArrayList<>();
         ArrayList<String> loreTranslate = Atm.language.translateStringList("lore");
 
+        switchMoney(money);
+
         lore.add(loreTranslate.get(0).replace("$server$", Atm.config.getString("server")));
         lore.add(colorCode + loreTranslate.get(1).replace("$amount", moneyString).replace("$unit$", Atm.config.getString("unit")));
         lore.add(loreTranslate.get(2));
@@ -102,8 +104,13 @@ public class MoneyUnit
         ArrayList<Material> itemList= Atm.itemList;
         if (!isMoneyItem(item)) return 0;
         Material itemMaterial = item.getType();
+        return getMoneyByMaterial(itemMaterial, itemList);
+    }
+
+    private static int getMoneyByMaterial(Material itemMaterial, ArrayList<Material> itemList)
+    {
         int money;
-        if(itemList.get(0).equals(item.getType()))
+        if(itemList.get(0).equals(itemMaterial))
             money = 1;
         else if (itemList.get(1).equals(itemMaterial))
             money = 10;
@@ -125,6 +132,7 @@ public class MoneyUnit
             money = 0;
         return money;
     }
+
 
 
     public static boolean isMoneyItem(ItemStack item)

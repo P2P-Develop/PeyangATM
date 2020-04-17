@@ -13,6 +13,7 @@ word:
   title: §6§lATM
   #コマンドプレフィクス
   prefix: §9[§bATM§9]
+
 #Lore(お金かどうかを判定するのに使います。)
 lore:
   - §c§l$server$§9で使える貨幣。
