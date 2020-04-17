@@ -110,31 +110,51 @@ public class MoneyUnit
 
     private static int getMoneyByMaterial(Material itemMaterial, ArrayList<Material> itemList)
     {
-        int money;
-        if(itemList.get(0).equals(itemMaterial))
-            money = 1;
-        else if (itemList.get(1).equals(itemMaterial))
-            money = 10;
-        else if (itemList.get(2).equals(itemMaterial))
-            money = 100;
-        else if (itemList.get(3).equals(itemMaterial))
-            money = 1000;
-        else if (itemList.get(4).equals(itemMaterial))
-            money = 10000;
-        else if (itemList.get(5).equals(itemMaterial))
-            money = 100000;
-        else if (itemList.get(6).equals(itemMaterial))
-            money = 1000000;
-        else if (itemList.get(7).equals(itemMaterial))
-            money = 10000000;
-        else if (itemList.get(8).equals(itemMaterial))
-            money = 100000000;
-        else
-            money = 0;
-        return money;
+        for (Material item: itemList)
+        {
+            if (item.equals(itemMaterial))
+                return getMoneyFromIndex(itemList.indexOf(item));
+        }
+        return 0;
     }
 
-
+    private static int getMoneyFromIndex(int index)
+    {
+        int money;
+        switch(index)
+        {
+            case 0:
+                money = 1;
+                break;
+            case 1:
+                money = 10;
+                break;
+            case 2:
+                money = 100;
+                break;
+            case 3:
+                money = 1000;
+                break;
+            case 4:
+                money = 10000;
+                break;
+            case 5:
+                money = 100000;
+                break;
+            case 6:
+                money = 1000000;
+                break;
+            case 7:
+                money = 10000000;
+                break;
+            case 8:
+                money = 100000000;
+                break;
+            default:
+                money = 0;
+        }
+        return money;
+    }
 
     public static boolean isMoneyItem(ItemStack item)
     {
