@@ -113,47 +113,21 @@ public class MoneyUnit
         for (Material item: itemList)
         {
             if (item.equals(itemMaterial))
-                return getMoneyFromIndex(itemList.indexOf(item));
+                return getDataBase().get(itemList.indexOf(item));
         }
         return 0;
     }
 
-    private static int getMoneyFromIndex(int index)
+    private static ArrayList<Integer> getDataBase()
     {
-        int money;
-        switch(index)
+        ArrayList<Integer> dataBase = new ArrayList<>();
+        int count = 1;
+        for (int i = 0; i < 8; i ++)
         {
-            case 0:
-                money = 1;
-                break;
-            case 1:
-                money = 10;
-                break;
-            case 2:
-                money = 100;
-                break;
-            case 3:
-                money = 1000;
-                break;
-            case 4:
-                money = 10000;
-                break;
-            case 5:
-                money = 100000;
-                break;
-            case 6:
-                money = 1000000;
-                break;
-            case 7:
-                money = 10000000;
-                break;
-            case 8:
-                money = 100000000;
-                break;
-            default:
-                money = 0;
+            dataBase.add(10 * count);
+            count = 10 * count;
         }
-        return money;
+        return dataBase;
     }
 
     public static boolean isMoneyItem(ItemStack item)
