@@ -1,6 +1,7 @@
 package ml.peya.plugins.Moneys;
 
 import ml.peya.plugins.*;
+import ml.peya.plugins.Inventorys.*;
 import ml.peya.plugins.Utils.*;
 import org.bukkit.*;
 import org.bukkit.inventory.*;
@@ -137,7 +138,7 @@ public class MoneyUnit
 
     public static boolean isMoneyItem(ItemStack item)
     {
-        if (item == null)
+        if (InventoryItem.isAirOrNull(item))
             return false;
         ItemMeta meta = item.getItemMeta();
         ArrayList<String> lore = (ArrayList<String>) meta.getLore();

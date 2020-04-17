@@ -10,22 +10,20 @@ public class CommandCore implements CommandExecutor
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
-        String labels;
-        if (args.length == 0 || args[0].equals("open"))
+        if (args.length == 0 && sender instanceof Player)
+            CommandOpen.commandOpen(sender);
+
+        else if(!(sender instanceof Player))
         {
-            if (sender instanceof Player)
-                labels = "open";
-            else
-            {
-                sender.sendMessage(Atm.language.translateString("error.pleasePlayer"));
-                return true;
-            }
+            sender.sendMessage(Atm.language.translateString("error.pleasePlayer"));
+            return true;
         }
-        else if (args[0].equals("reload"))
-            labels = "reload";
+
+        if ("reload".equals(args[1]))
+            CommandReload.commandReload(sender);
         else
-            labels = "help";
-        new CommandHelp().onCommand(sender, command, "atm " + labels, args);
+            CommandHelp.commandHelp(sender);
+
         return true;
     }
 }

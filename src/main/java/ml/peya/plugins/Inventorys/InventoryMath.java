@@ -39,17 +39,21 @@ public class InventoryMath
         ArrayList<ItemStack> moneyItems = new ArrayList<>();
         for (ItemStack stack: stacks)
         {
-            if (stack == null)
+            if (InventoryItem.isAirOrNull(stack))
                 continue;
-            for (int i = 1; i <= stack.getAmount(); i++)
-            {
-                if (MoneyUnit.isMoneyItem(stack))
-                    moneyItems.add(stack);
-
-            }
+            addItemFromStack(moneyItems, stack);
         }
 
         return moneyItems;
+    }
+
+    private static void addItemFromStack(ArrayList<ItemStack> stack, ItemStack itemStack)
+    {
+        for (int i = 1; i <= itemStack.getAmount(); i++)
+        {
+            if (MoneyUnit.isMoneyItem(itemStack))
+                stack.add(itemStack);
+        }
     }
 
 }
