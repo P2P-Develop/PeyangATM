@@ -2,8 +2,8 @@ package ml.peya.plugins.Events.Players;
 
 import ml.peya.plugins.*;
 import ml.peya.plugins.Inventorys.Inventory;
-import ml.peya.plugins.Inventorys.*;
 import ml.peya.plugins.Moneys.*;
+import ml.peya.plugins.Utils.*;
 import org.bukkit.block.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
@@ -18,11 +18,11 @@ public class PlayerInteractEvent implements Listener
         Player player = e.getPlayer();
         Block block = e.getClickedBlock();
         ItemStack mainHandItem = player.getInventory().getItemInMainHand();
-        if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) &&
-                InventoryItem.isAirOrNull(mainHandItem) &&
-                MoneyUnit.isMoneyItem(mainHandItem))
+        Action action = e.getAction();
+
+        if (MoneyUnit.isMoneyItem(mainHandItem))
             Inventory.openSelectInventory(player);
-        else if (block != null && block.getState() instanceof Sign && e.getAction() == Action.RIGHT_CLICK_BLOCK)
+        else if (BlockUtil.isSign(block) && action == Action.RIGHT_CLICK_BLOCK)
         {
             Sign sign = (Sign) block.getState();
             String line = sign.getLine(0);
@@ -31,4 +31,5 @@ public class PlayerInteractEvent implements Listener
         }
 
     }
+
 }

@@ -5,10 +5,9 @@ import ml.peya.plugins.Utils.*;
 import org.bukkit.*;
 import org.bukkit.command.*;
 
-public class CommandHelp implements CommandExecutor
+public class CommandHelp
 {
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
+    public static void commandHelp(CommandSender sender)
     {
         LanguageUtil language = Atm.language;
         for (String text: language.translateStringList("help"))
@@ -19,6 +18,5 @@ public class CommandHelp implements CommandExecutor
                 sender.sendMessage(text + "\n");
         }
 
-        return true;
     }
 }

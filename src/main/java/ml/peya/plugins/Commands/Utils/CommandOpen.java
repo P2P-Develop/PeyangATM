@@ -1,19 +1,14 @@
 package ml.peya.plugins.Commands.Utils;
 
-import ml.peya.plugins.Atm;
-import ml.peya.plugins.Inventorys.Inventory;
-import ml.peya.plugins.Utils.LanguageUtil;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Player;
+import ml.peya.plugins.*;
+import ml.peya.plugins.Inventorys.*;
+import ml.peya.plugins.Utils.*;
+import org.bukkit.command.*;
+import org.bukkit.entity.*;
 
-public class CommandOpen implements CommandExecutor
+public class CommandOpen
 {
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
+    public static void commandOpen(CommandSender sender)
     {
         LanguageUtil language = Atm.language;
         String prefix = language.translateString("word.prefix");
@@ -23,6 +18,5 @@ public class CommandOpen implements CommandExecutor
             Inventory.openSelectInventory((Player) sender);
         else
             sender.sendMessage(prefix + language.translateString("error.noPermission"));
-        return true;
     }
 }
