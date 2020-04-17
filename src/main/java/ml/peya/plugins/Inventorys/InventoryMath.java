@@ -26,11 +26,7 @@ public class InventoryMath
         {
             if (InventoryItem.isAirOrNull(stack))
                 continue;
-            for (int i = 1; i <= stack.getAmount(); i++)
-            {
-                if (!((stack.equals(InventoryItem.getItem(InventoryItemType.BACK_ITEM)) || stack.getItemMeta().getDisplayName().equals(Atm.language.translateString("word.in")))))
-                    player.getInventory().addItem(stack);
-            }
+            returnItemFromStack(player, stack);
         }
     }
 
@@ -53,6 +49,16 @@ public class InventoryMath
         {
             if (MoneyUnit.isMoneyItem(itemStack))
                 stack.add(itemStack);
+        }
+    }
+
+    private static void returnItemFromStack(Player player, ItemStack itemStack)
+    {
+        for (int i = 1; i <= itemStack.getAmount(); i++)
+        {
+            if (!(itemStack.equals(InventoryItem.getItem(InventoryItemType.BACK_ITEM)) ||
+                    itemStack.getItemMeta().getDisplayName().equals(Atm.language.translateString("word.in"))))
+                player.getInventory().addItem(itemStack);
         }
     }
 
