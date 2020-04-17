@@ -38,7 +38,6 @@ public class Atm extends JavaPlugin
                 itemList.add(Material.BARRIER);
             }
         }
-        System.out.println(itemList);
         getCommand("atm").setExecutor(new CommandCore());
         EventCore.registerEvents(plugin);
         log(EnumOutMessageType.INFO, "PeyangAtm Is Enabled!");

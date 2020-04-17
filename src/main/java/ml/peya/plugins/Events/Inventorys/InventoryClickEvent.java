@@ -1,9 +1,11 @@
 package ml.peya.plugins.Events.Inventorys;
 
 import ml.peya.plugins.*;
+import ml.peya.plugins.Enums.*;
 import ml.peya.plugins.Inventorys.*;
+import org.bukkit.*;
+import org.bukkit.entity.*;
 import org.bukkit.event.*;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.*;
 
 public class InventoryClickEvent implements Listener
@@ -11,18 +13,22 @@ public class InventoryClickEvent implements Listener
     @EventHandler
     public void onInventoryClick(org.bukkit.event.inventory.InventoryClickEvent e)
     {
-        Inventory inventory = e.getInventory();
-        if(inventory.getSize() != 54)
-            return;
-
-        ItemStack inItems = inventory.getItem(49);
-        if (inItems == null)
-            return;
-        if (inItems.getItemMeta().getDisplayName().equals(Atm.language.translateString("word.in")))
+        Player player = (Player) e.getWhoClicked();
+        if (Atm.openInventory.get(player) == EnumOpenNowInventoryTypes.IN_INVENTORY)
         {
-            int money = InventoryMath.mathInventoryItems(inventory);
-            inItems = InventoryItem.getGiveItem(money);
-            inventory.setItem(49, inItems);
+            InventoryView playerInventory = player.getOpenInventory();
+            org.bukkit.inventory.Inventory inventory = playerInventory.getTopInventory();
+            final ItemStack[] inItems = {inventory.getItem(49)};
+            if (inItems[0] == null || inItems[0].getType() == Material.AIR)
+                return;
+            if (inItems[0].getItemMeta().getDisplayName().equals(Atm.language.translateString("word.in")))
+            {
+                Atm.getPlugin().getServer().getScheduler().scheduleSyncDelayedTask(Atm.getPlugin(), () -> {
+                    int money = InventoryMath.mathInventoryItems(inventory);
+                    inItems[0] = InventoryItem.getGiveItem(money);
+                    inventory.setItem(49, inItems[0]);
+                }, 5L);
+            }
         }
     }
 }

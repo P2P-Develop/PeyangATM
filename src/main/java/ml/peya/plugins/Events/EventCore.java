@@ -11,7 +11,6 @@ public class EventCore
         PluginManager manager = plugin.getServer().getPluginManager();
         manager.registerEvents(new InventoryClickEvent(), plugin);
         manager.registerEvents(new InventoryCloseEvent(), plugin);
-        manager.registerEvents(new InventoryItemMoveEvent(), plugin);
         manager.registerEvents(new InventoryItemClickEvent(), plugin);
         manager.registerEvents(new PlayerInteractEvent(), plugin);
     }

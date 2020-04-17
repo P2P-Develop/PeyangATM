@@ -1,6 +1,7 @@
 package ml.peya.plugins.Moneys;
 
 import ml.peya.plugins.*;
+import ml.peya.plugins.Utils.*;
 import org.bukkit.*;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.*;
@@ -69,8 +70,7 @@ public class MoneyUnit
                 preSuffix = "Unknown";
         }
         ItemStack stack = new ItemStack(item);
-        ItemMeta meta = stack.getItemMeta();
-        meta.setDisplayName(colorCode + moneyString + preSuffix + "Peyallion");
+
         ArrayList<String> lore = new ArrayList<>();
         ArrayList<String> loreTranslate = Atm.language.translateStringList("lore");
 
@@ -83,9 +83,11 @@ public class MoneyUnit
         loreTranslate.remove(0);
         lore.addAll(loreTranslate);
 
+        ItemMeta meta = stack.getItemMeta();
+        meta.setDisplayName(colorCode + moneyString + preSuffix + "Peyallion");
         meta.setLore(lore);
         stack.setItemMeta(meta);
-        return stack;
+        return GlowUtil.setGlow(stack);
     }
 
     public static int getMoneyByItems(ItemStack item)

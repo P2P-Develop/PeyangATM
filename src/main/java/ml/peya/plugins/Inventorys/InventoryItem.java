@@ -1,10 +1,14 @@
 package ml.peya.plugins.Inventorys;
 
 import ml.peya.plugins.*;
+import ml.peya.plugins.Moneys.*;
+import ml.peya.plugins.Utils.*;
 import org.bukkit.*;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.*;
 
+import java.math.*;
 import java.util.*;
 
 public class InventoryItem
@@ -27,11 +31,16 @@ public class InventoryItem
         return outStack;
     }
 
-    public static ItemStack getSelectItems ()
+    public static ItemStack getSelectItems (Player player)
     {
         ItemStack selectStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)13);
         ItemMeta selectMeta = selectStack.getItemMeta();
-        selectMeta.setDisplayName(String.format("%s §r| %s", Atm.language.translateString("word.in"), Atm.language.translateString("word.out")));
+        LanguageUtil language = Atm.language;
+        selectMeta.setDisplayName(String.format("%s §r| %s", language.translateString("word.in"), language.translateString("word.out")));
+        ArrayList<String> lore = new ArrayList<>();
+        String moneyStr = BigDecimal.valueOf(MoneyCoreSystem.getMoney(player)).toPlainString();
+        lore.add(language.translateString("word.now").replace("$amount$", moneyStr).replace("$unit$", Atm.config.getString("unit")));
+        selectMeta.setLore(lore);
         selectStack.setItemMeta(selectMeta);
         return selectStack;
     }
@@ -55,6 +64,6 @@ public class InventoryItem
         lore.add(Atm.language.translateString("word.now").replace("$amount$", String.valueOf(money)).replace("$unit$", Atm.config.getString("unit")));
         giveMeta.setLore(lore);
         giveStack.setItemMeta(giveMeta);
-        return giveStack;
+        return GlowUtil.setGlow(giveStack);
     }
 }
