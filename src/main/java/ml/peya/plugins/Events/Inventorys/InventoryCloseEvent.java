@@ -26,7 +26,7 @@ public class InventoryCloseEvent implements Listener
                 continue;
             for (int i = 1; i <= stack.getAmount(); i++)
             {
-                if (!((stack.equals(InventoryItem.getBackButtonItem()) || stack.getItemMeta().getDisplayName().equals(Atm.language.translateString("word.in")))))
+                if (!((stack.equals(InventoryItem.getItem(InventoryItemType.BACK_ITEM)) || stack.getItemMeta().getDisplayName().equals(Atm.language.translateString("word.in")))))
                     e.getPlayer().getInventory().addItem(stack);
             }
         }

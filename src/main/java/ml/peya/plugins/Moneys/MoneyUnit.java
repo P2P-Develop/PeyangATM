@@ -12,8 +12,8 @@ public class MoneyUnit
 {
     public static ItemStack getItemByInt(int money)
     {
-        String colorCode = "";
-        String preSuffix = "";
+        String colorCode;
+        String preSuffix;
         ArrayList<Material> items = Atm.itemList;
         Material item;
         String moneyString = String.valueOf(money);
@@ -95,27 +95,28 @@ public class MoneyUnit
         ArrayList<Material> itemList= Atm.itemList;
         if (!isMoneyItem(item)) return 0;
         Material itemMaterial = item.getType();
+        int money;
         if(itemList.get(0).equals(item.getType()))
-            return 1;
+            money = 1;
         else if (itemList.get(1).equals(itemMaterial))
-            return 10;
+            money = 10;
         else if (itemList.get(2).equals(itemMaterial))
-            return 100;
+            money = 100;
         else if (itemList.get(3).equals(itemMaterial))
-            return 1000;
+            money = 1000;
         else if (itemList.get(4).equals(itemMaterial))
-            return 10000;
+            money = 10000;
         else if (itemList.get(5).equals(itemMaterial))
-            return 100000;
+            money = 100000;
         else if (itemList.get(6).equals(itemMaterial))
-            return 1000000;
+            money = 1000000;
         else if (itemList.get(7).equals(itemMaterial))
-            return 10000000;
+            money = 10000000;
         else if (itemList.get(8).equals(itemMaterial))
-            return 100000000;
+            money = 100000000;
         else
-            return 0;
-
+            money = 0;
+        return money;
     }
 
 

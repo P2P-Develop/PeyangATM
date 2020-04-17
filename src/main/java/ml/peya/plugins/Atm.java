@@ -1,7 +1,6 @@
 package ml.peya.plugins;
 
 import ml.peya.plugins.Commands.*;
-import ml.peya.plugins.Enums.*;
 import ml.peya.plugins.Events.*;
 import ml.peya.plugins.Utils.*;
 import net.milkbowl.vault.economy.*;
@@ -11,6 +10,7 @@ import org.bukkit.plugin.*;
 import org.bukkit.plugin.java.*;
 
 import java.util.*;
+import java.util.logging.*;
 
 public class Atm extends JavaPlugin
 {
@@ -20,9 +20,11 @@ public class Atm extends JavaPlugin
     public static Economy economy;
     public static PlayerUtil openInventory = new PlayerUtil();
     public static ArrayList<Material> itemList;
+    public static Logger logger;
     @Override
     public void onEnable()
     {
+        Logger logger = getLogger();
         saveDefaultConfig();
         config = getConfig();
         plugin = this;
@@ -34,16 +36,16 @@ public class Atm extends JavaPlugin
                 itemList.add(Material.getMaterial(itemString));
             else
             {
-                log(EnumOutMessageType.SEVERE, "Invalid material type. replaced BARRIER_BLOCK");
+                logger.warning("Invalid material type. replaced BARRIER_BLOCK");
                 itemList.add(Material.BARRIER);
             }
         }
         getCommand("atm").setExecutor(new CommandCore());
         EventCore.registerEvents(plugin);
-        log(EnumOutMessageType.INFO, "PeyangAtm Is Enabled!");
+        logger.info("PeyangAtm Is Enabled!");
         if(!setupEconomy())
         {
-            log(EnumOutMessageType.SEVERE, "Require Vault Plugin");
+            logger.log(Level.SEVERE, "Require Vault Plugin");
             Bukkit.getPluginManager().disablePlugin(this);
         }
     }
@@ -51,13 +53,9 @@ public class Atm extends JavaPlugin
     @Override
     public void onDisable()
     {
-        log(EnumOutMessageType.INFO, "PeyangAtm Is Disabled!");
+        logger.info("PeyangAtm Is Disabled!");
     }
 
-    public static void log(EnumOutMessageType type, String msg)
-    {
-        type.log(getPlugin().getLogger(), msg);
-    }
 
     public static Atm getPlugin()
     {

@@ -4,8 +4,6 @@ import ml.peya.plugins.*;
 import ml.peya.plugins.Events.Inventorys.Pickup.*;
 import ml.peya.plugins.Inventorys.Inventory;
 import ml.peya.plugins.Inventorys.*;
-import ml.peya.plugins.Moneys.*;
-import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -27,7 +25,7 @@ public class InventoryItemClickEvent implements Listener
                 OpenNowSelectInventory.process(player, stack);
                 break;
             case IN_INVENTORY:
-                if(stack.equals(InventoryItem.getBackButtonItem()))
+                if(stack.equals(InventoryItem.getItem(InventoryItemType.BACK_ITEM)))
                 {
                     e.setCancelled(true);
                     Inventory.openSelectInventory(player);

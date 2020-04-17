@@ -13,8 +13,8 @@ public class Inventory
     {
         String textTitle = Atm.language.translateString("word.title");
         org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 9, textTitle);
-        ItemStack outStack = InventoryItem.getOutItem();
-        ItemStack inStack = InventoryItem.getInItem();
+        ItemStack outStack = InventoryItem.getItem(InventoryItemType.OUT_ITEM);
+        ItemStack inStack = InventoryItem.getItem(InventoryItemType.OUT_ITEM);
         ItemStack selectStack = InventoryItem.getSelectItems(player);
         inventory.setItem(0, inStack);
         inventory.setItem(1, inStack);
@@ -33,15 +33,16 @@ public class Inventory
     {
         String textTitle = Atm.language.translateString("word.in");
         org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 54, textTitle);
-        inventory.setItem(53, InventoryItem.getBackButtonItem());
-        inventory.setItem(52, InventoryItem.getBackButtonItem());
-        inventory.setItem(51, InventoryItem.getBackButtonItem());
-        inventory.setItem(50, InventoryItem.getBackButtonItem());
+        ItemStack backItem = InventoryItem.getItem(InventoryItemType.BACK_ITEM);
+        inventory.setItem(53, backItem);
+        inventory.setItem(52, backItem);
+        inventory.setItem(51, backItem);
+        inventory.setItem(50, backItem);
         inventory.setItem(49, InventoryItem.getGiveItem(0));
-        inventory.setItem(48, InventoryItem.getBackButtonItem());
-        inventory.setItem(47, InventoryItem.getBackButtonItem());
-        inventory.setItem(46, InventoryItem.getBackButtonItem());
-        inventory.setItem(45, InventoryItem.getBackButtonItem());
+        inventory.setItem(48, backItem);
+        inventory.setItem(47, backItem);
+        inventory.setItem(46, backItem);
+        inventory.setItem(45, backItem);
         player.openInventory(inventory);
         Atm.openInventory.change(player, EnumOpenNowInventoryTypes.IN_INVENTORY);
     }
@@ -49,7 +50,7 @@ public class Inventory
     public static void openOutInventory(Player player)
     {
         String textTitle = Atm.language.translateString("word.out");
-        ItemStack backButton = InventoryItem.getBackButtonItem();
+        ItemStack backButton = InventoryItem.getItem(InventoryItemType.BACK_ITEM);
         org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 18, textTitle);
         inventory.setItem(0, EnumItemValue.ONE.getItem());
         inventory.setItem(1, EnumItemValue.TEN.getItem());
