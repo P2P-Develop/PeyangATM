@@ -70,4 +70,9 @@ public class InventoryItem
         giveStack.setItemMeta(giveMeta);
         return GlowUtil.setGlow(giveStack);
     }
+
+    public static boolean isAirOrNull(ItemStack stack)
+    {
+        return stack == null || stack.getType() == Material.AIR;
+    }
 }

@@ -10,13 +10,13 @@ import java.util.*;
 
 public class MoneyUnit
 {
-    public static ItemStack getItemByInt(int money)
+    private static String colorCode;
+    private static Material item;
+    private static String preSuffix;
+
+    private void switcMoney(int money)
     {
-        String colorCode;
-        String preSuffix;
         ArrayList<Material> items = Atm.itemList;
-        Material item;
-        String moneyString = String.valueOf(money);
         switch (money)
         {
             case 1: //いち
@@ -69,6 +69,13 @@ public class MoneyUnit
                 item = Material.BARRIER;
                 preSuffix = "Unknown";
         }
+    }
+
+    public static ItemStack getItemByInt(int money)
+    {
+
+        String moneyString = String.valueOf(money);
+
         ItemStack stack = new ItemStack(item);
 
         ArrayList<String> lore = new ArrayList<>();
