@@ -9,9 +9,9 @@ public class OpenNowSelectInventory
 {
     public static void process(Player player, ItemStack stack)
     {
-        if (stack.equals(InventoryItem.getInItem()))
+        if (stack.equals(InventoryItem.getItem(InventoryItemType.IN_ITEM)))
             Inventory.openInInventory(player);
-        else if (stack.equals(InventoryItem.getOutItem()))
+        else if (stack.equals(InventoryItem.getItem(InventoryItemType.OUT_ITEM)))
             Inventory.openOutInventory(player);
     }
 }

@@ -13,23 +13,36 @@ import java.util.*;
 
 public class InventoryItem
 {
-    public static ItemStack getInItem ()
+
+    public static ItemStack getItem(InventoryItemType itemType)
     {
-        ItemStack inStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 11);
-        ItemMeta inMeta = inStack.getItemMeta();
-        inMeta.setDisplayName(Atm.language.translateString("word.in"));
-        inStack.setItemMeta(inMeta);
-        return inStack;
+        short metaValue;
+        String displayName;
+        switch (itemType)
+        {
+            case IN_ITEM:
+                metaValue = 11;
+                displayName = "word.in";
+                break;
+            case BACK_ITEM:
+                metaValue = 14;
+                displayName = "word.back";
+                break;
+            case OUT_ITEM:
+                metaValue = 14;
+                displayName = "word.out";
+                break;
+            default:
+                metaValue = 0;
+                displayName = "";
+        }
+        ItemStack backStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, metaValue);
+        ItemMeta backMeta = backStack.getItemMeta();
+        backMeta.setDisplayName(Atm.language.translateString(displayName));
+        backStack.setItemMeta(backMeta);
+        return backStack;
     }
 
-    public static ItemStack getOutItem ()
-    {
-        ItemStack outStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)14);
-        ItemMeta outMeta = outStack.getItemMeta();
-        outMeta.setDisplayName(Atm.language.translateString("word.out"));
-        outStack.setItemMeta(outMeta);
-        return outStack;
-    }
 
     public static ItemStack getSelectItems (Player player)
     {
@@ -43,15 +56,6 @@ public class InventoryItem
         selectMeta.setLore(lore);
         selectStack.setItemMeta(selectMeta);
         return selectStack;
-    }
-
-    public static ItemStack getBackButtonItem ()
-    {
-        ItemStack backStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)14);
-        ItemMeta backMeta = backStack.getItemMeta();
-        backMeta.setDisplayName(Atm.language.translateString("word.back"));
-        backStack.setItemMeta(backMeta);
-        return backStack;
     }
 
 
