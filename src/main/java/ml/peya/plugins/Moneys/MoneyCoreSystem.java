@@ -57,4 +57,9 @@ public class MoneyCoreSystem
 
         return new BalanceOutputUtil(EnumBalanceOutput.NOACCOUNT, "Failed", false);
     }
+
+    public static double getMoney(Player player)
+    {
+        return economy.getBalance(player);
+    }
 }

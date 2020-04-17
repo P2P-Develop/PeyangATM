@@ -15,7 +15,7 @@ public class Inventory
         org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 9, textTitle);
         ItemStack outStack = InventoryItem.getOutItem();
         ItemStack inStack = InventoryItem.getInItem();
-        ItemStack selectStack = InventoryItem.getSelectItems();
+        ItemStack selectStack = InventoryItem.getSelectItems(player);
         inventory.setItem(0, inStack);
         inventory.setItem(1, inStack);
         inventory.setItem(2, inStack);

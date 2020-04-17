@@ -13,7 +13,6 @@ public class OpenNowInInventory
 {
     public static void process(Player player, ItemStack stack, InventoryClickEvent e)
     {
-
         ItemStack inItems = e.getInventory().getItem(49);
         if (inItems == null || stack.getItemMeta() == null || stack.getItemMeta().getDisplayName() == null)
             return;

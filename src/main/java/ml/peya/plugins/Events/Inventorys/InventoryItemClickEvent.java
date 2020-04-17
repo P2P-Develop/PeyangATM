@@ -4,6 +4,8 @@ import ml.peya.plugins.*;
 import ml.peya.plugins.Events.Inventorys.Pickup.*;
 import ml.peya.plugins.Inventorys.Inventory;
 import ml.peya.plugins.Inventorys.*;
+import ml.peya.plugins.Moneys.*;
+import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -31,6 +33,7 @@ public class InventoryItemClickEvent implements Listener
                     Inventory.openSelectInventory(player);
                     return;
                 }
+
                 OpenNowInInventory.process(player, stack, e);
                 break;
             case OUT_INVENTORY:
