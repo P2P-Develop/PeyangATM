@@ -13,7 +13,7 @@ public class OpenNowOutInventory
 {
     public static void process(Player player, ItemStack stack)
     {
-        if (stack.equals(InventoryItem.getBackButtonItem()))
+        if (stack.equals(InventoryItem.getItem(InventoryItemType.BACK_ITEM)))
         {
             Inventory.openSelectInventory(player);
             return;
