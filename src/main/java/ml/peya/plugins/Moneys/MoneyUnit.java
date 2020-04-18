@@ -76,13 +76,13 @@ public class MoneyUnit
     {
 
         String moneyString = String.valueOf(money);
+        switchMoney(money);
 
         ItemStack stack = new ItemStack(item);
 
         ArrayList<String> lore = new ArrayList<>();
         ArrayList<String> loreTranslate = Atm.language.translateStringList("lore");
 
-        switchMoney(money);
 
         lore.add(loreTranslate.get(0).replace("$server$", Atm.config.getString("server")));
         lore.add(colorCode + loreTranslate.get(1).replace("$amount", moneyString).replace("$unit$", Atm.config.getString("unit")));
