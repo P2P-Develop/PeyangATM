@@ -11,8 +11,10 @@ public class CommandCore implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         if (args.length == 0 && sender instanceof Player)
+        {
             CommandOpen.commandOpen(sender);
-
+            return true;
+        }
         else if(!(sender instanceof Player))
         {
             sender.sendMessage(Atm.language.translateString("error.pleasePlayer"));

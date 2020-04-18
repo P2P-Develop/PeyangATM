@@ -13,5 +13,6 @@ public class EventCore
         manager.registerEvents(new InventoryCloseEvent(), plugin);
         manager.registerEvents(new InventoryItemClickEvent(), plugin);
         manager.registerEvents(new PlayerInteractEvent(), plugin);
+        manager.registerEvents(new PlayerQuitEvent(), plugin);
     }
 }

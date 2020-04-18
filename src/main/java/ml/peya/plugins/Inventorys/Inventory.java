@@ -14,7 +14,7 @@ public class Inventory
         String textTitle = Atm.language.translateString("word.title");
         org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 9, textTitle);
         ItemStack outStack = InventoryItem.getItem(InventoryItemType.OUT_ITEM);
-        ItemStack inStack = InventoryItem.getItem(InventoryItemType.OUT_ITEM);
+        ItemStack inStack = InventoryItem.getItem(InventoryItemType.IN_ITEM);
         ItemStack selectStack = InventoryItem.getSelectItems(player);
         inventory.setItem(0, inStack);
         inventory.setItem(1, inStack);

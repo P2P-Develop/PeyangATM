@@ -24,7 +24,7 @@ public class Atm extends JavaPlugin
     @Override
     public void onEnable()
     {
-        Logger logger = getLogger();
+        logger = Bukkit.getLogger();
         saveDefaultConfig();
         config = getConfig();
         plugin = this;
