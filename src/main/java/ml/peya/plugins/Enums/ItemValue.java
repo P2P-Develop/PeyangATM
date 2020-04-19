@@ -4,7 +4,7 @@ import ml.peya.plugins.Moneys.*;
 import org.bukkit.inventory.*;
 
 
-public enum EnumItemValue
+public enum ItemValue
 {
     ONE(1), //いち
     TEN(10), //じゅう
@@ -18,13 +18,13 @@ public enum EnumItemValue
 
     private ItemStack moneyStacks;
     private int money;
-    EnumItemValue(int money)
+    ItemValue(int money)
     {
         this.moneyStacks = MoneyUnit.getItemByInt(money);
         this.money = money;
     }
 
-    public EnumItemValue getEnumItemValuesByInt(int money)
+    public ItemValue getEnumItemValuesByInt(int money)
     {
         this.moneyStacks = MoneyUnit.getItemByInt(money);
         this.money = money;

@@ -17,7 +17,7 @@ word:
 #Lore(お金かどうかを判定するのに使います。)
 lore:
   - §c§l$server$§9で使える貨幣。
-  - $amount$unit$の価値がある。
+  - $amount$§2§l$unit$の価値がある。
   - §c右クリックで§6ATMを開ける。
 
 message:
@@ -26,7 +26,7 @@ message:
   ##引き出し
   successOut: §f§l$amount$§2§l$unit$を引き出ししました。
   ##コンフィグリロード(完了)
-  reloadSuccess: §a§lコンフィグをリロードしました。
+  successReload: §a§lコンフィグをリロードしました。
 
 helpmessage:
   - $prefix$ #変えられられません。

@@ -1,6 +1,6 @@
 package ml.peya.plugins.Enums;
 
-public enum EnumBalanceOutput
+public enum BalanceOutput
 {
     ERROR,
     OK,

@@ -85,7 +85,7 @@ public class MoneyUnit
 
 
         lore.add(loreTranslate.get(0).replace("$server$", Atm.config.getString("server")));
-        lore.add(colorCode + loreTranslate.get(1).replace("$amount", moneyString).replace("$unit$", Atm.config.getString("unit")));
+        lore.add(Translate.replaceMoney(colorCode + loreTranslate.get(1), money));
         lore.add(loreTranslate.get(2));
 
         loreTranslate.remove(2);
@@ -122,6 +122,7 @@ public class MoneyUnit
     {
         ArrayList<Integer> dataBase = new ArrayList<>();
         int count = 1;
+        dataBase.add(count);
         for (int i = 0; i < 8; i ++)
         {
             dataBase.add(10 * count);

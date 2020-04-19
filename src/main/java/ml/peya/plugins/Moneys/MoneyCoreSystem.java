@@ -9,7 +9,7 @@ import org.bukkit.entity.*;
 public class MoneyCoreSystem
 {
     private static Economy economy = Atm.economy;
-    public static BalanceOutputUtil withDrawMoney(EnumItemValue money, Player player, boolean isDebt)
+    public static BalanceOutputUtil withDrawMoney(ItemValue money, Player player, boolean isDebt)
     {
         BalanceOutputUtil output = hasBalance(player, money.getMoney());
         switch(output.getType())
@@ -28,18 +28,18 @@ public class MoneyCoreSystem
                 else
                     return new BalanceOutputUtil(output.getType(), "No Money.", false);
             default:
-                return new BalanceOutputUtil(EnumBalanceOutput.ERROR, "Unknown error.", false);
+                return new BalanceOutputUtil(BalanceOutput.ERROR, "Unknown error.", false);
         }
     }
 
     public static BalanceOutputUtil hasBalance(Player player, double money)
     {
         if (!hasAccount(player))
-            return new BalanceOutputUtil(EnumBalanceOutput.NOACCOUNT, "NO Account!", false);
+            return new BalanceOutputUtil(BalanceOutput.NOACCOUNT, "NO Account!", false);
         if (economy.has(player, money))
-            return new BalanceOutputUtil(EnumBalanceOutput.OK, "", true);
+            return new BalanceOutputUtil(BalanceOutput.OK, "", true);
         else
-            return new BalanceOutputUtil(EnumBalanceOutput.NOMONEY, "No Money.", false);
+            return new BalanceOutputUtil(BalanceOutput.NOMONEY, "No Money.", false);
     }
 
     public static boolean hasAccount(Player player)
@@ -52,10 +52,10 @@ public class MoneyCoreSystem
         if(hasAccount(player))
         {
             economy.depositPlayer(player, money);
-            return new BalanceOutputUtil(EnumBalanceOutput.OK, "Ok", true);
+            return new BalanceOutputUtil(BalanceOutput.OK, "Ok", true);
         }
 
-        return new BalanceOutputUtil(EnumBalanceOutput.NOACCOUNT, "Failed", false);
+        return new BalanceOutputUtil(BalanceOutput.NOACCOUNT, "Failed", false);
     }
 
     public static double getMoney(Player player)

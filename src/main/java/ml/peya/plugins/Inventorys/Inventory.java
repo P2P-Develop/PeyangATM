@@ -1,17 +1,16 @@
 package ml.peya.plugins.Inventorys;
 
-import ml.peya.plugins.Atm;
-import ml.peya.plugins.Enums.EnumItemValue;
-import ml.peya.plugins.Enums.EnumOpenNowInventoryTypes;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
+import ml.peya.plugins.*;
+import ml.peya.plugins.Enums.*;
+import org.bukkit.*;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.*;
 
 public class Inventory
 {
     public static void openSelectInventory(Player player)
     {
-        String textTitle = Atm.language.translateString("word.title");
+        String textTitle = WordType.TITLE.toString();
         org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 9, textTitle);
         ItemStack outStack = InventoryItem.getItem(InventoryItemType.OUT_ITEM);
         ItemStack inStack = InventoryItem.getItem(InventoryItemType.IN_ITEM);
@@ -26,12 +25,12 @@ public class Inventory
         inventory.setItem(7, outStack);
         inventory.setItem(8, outStack);
         player.openInventory(inventory);
-        Atm.openInventory.change(player, EnumOpenNowInventoryTypes.SELECT_INVENTORY);
+        Atm.openInventory.change(player, OpenNowInventoryType.SELECT_INVENTORY);
     }
 
     public static void openInInventory(Player player)
     {
-        String textTitle = Atm.language.translateString("word.in");
+        String textTitle = WordType.IN.toString();
         org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 54, textTitle);
         ItemStack backItem = InventoryItem.getItem(InventoryItemType.BACK_ITEM);
         inventory.setItem(53, backItem);
@@ -44,23 +43,23 @@ public class Inventory
         inventory.setItem(46, backItem);
         inventory.setItem(45, backItem);
         player.openInventory(inventory);
-        Atm.openInventory.change(player, EnumOpenNowInventoryTypes.IN_INVENTORY);
+        Atm.openInventory.change(player, OpenNowInventoryType.IN_INVENTORY);
     }
 
     public static void openOutInventory(Player player)
     {
-        String textTitle = Atm.language.translateString("word.out");
+        String textTitle = WordType.OUT.toString();
         ItemStack backButton = InventoryItem.getItem(InventoryItemType.BACK_ITEM);
         org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 18, textTitle);
-        inventory.setItem(0, EnumItemValue.ONE.getItem());
-        inventory.setItem(1, EnumItemValue.TEN.getItem());
-        inventory.setItem(2, EnumItemValue.HUNDRED.getItem());
-        inventory.setItem(3, EnumItemValue.ONE_THOUSAND.getItem());
-        inventory.setItem(4, EnumItemValue.TEN_THOUSAND.getItem());
-        inventory.setItem(5, EnumItemValue.HUNDRED_THOUSAND.getItem());
-        inventory.setItem(6, EnumItemValue.ONE_MILLION.getItem());
-        inventory.setItem(7, EnumItemValue.TEN_MILLION.getItem());
-        inventory.setItem(8, EnumItemValue.HUNDRED_MILLION.getItem());
+        inventory.setItem(0, ItemValue.ONE.getItem());
+        inventory.setItem(1, ItemValue.TEN.getItem());
+        inventory.setItem(2, ItemValue.HUNDRED.getItem());
+        inventory.setItem(3, ItemValue.ONE_THOUSAND.getItem());
+        inventory.setItem(4, ItemValue.TEN_THOUSAND.getItem());
+        inventory.setItem(5, ItemValue.HUNDRED_THOUSAND.getItem());
+        inventory.setItem(6, ItemValue.ONE_MILLION.getItem());
+        inventory.setItem(7, ItemValue.TEN_MILLION.getItem());
+        inventory.setItem(8, ItemValue.HUNDRED_MILLION.getItem());
         inventory.setItem(9, backButton);
         inventory.setItem(10, backButton);
         inventory.setItem(11, backButton);
@@ -71,6 +70,6 @@ public class Inventory
         inventory.setItem(16, backButton);
         inventory.setItem(17, backButton);
         player.openInventory(inventory);
-        Atm.openInventory.change(player, EnumOpenNowInventoryTypes.OUT_INVENTORY);
+        Atm.openInventory.change(player, OpenNowInventoryType.OUT_INVENTORY);
     }
 }

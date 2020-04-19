@@ -7,11 +7,11 @@ import java.util.*;
 
 public class PlayerUtil
 {
-    private Map<String, EnumOpenNowInventoryTypes> map = new HashMap<>();
+    private Map<String, OpenNowInventoryType> map = new HashMap<>();
 
-    public void change(Player player, EnumOpenNowInventoryTypes type)
+    public void change(Player player, OpenNowInventoryType type)
     {
-        if (type == EnumOpenNowInventoryTypes.NO_INVENTORY)
+        if (type == OpenNowInventoryType.NO_INVENTORY)
         {
             map.remove(player.getUniqueId().toString());
             return;
@@ -20,12 +20,12 @@ public class PlayerUtil
         map.put(player.getUniqueId().toString(),type);
     }
 
-    public EnumOpenNowInventoryTypes get(Player player)
+    public OpenNowInventoryType get(Player player)
     {
         if (exists(player))
             return map.get(player.getUniqueId().toString());
         else
-            return EnumOpenNowInventoryTypes.NO_INVENTORY;
+            return OpenNowInventoryType.NO_INVENTORY;
     }
 
     public boolean exists(Player player)

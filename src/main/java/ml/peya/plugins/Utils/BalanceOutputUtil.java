@@ -5,17 +5,17 @@ import ml.peya.plugins.Enums.*;
 public class BalanceOutputUtil
 {
 
-    private EnumBalanceOutput type;
+    private BalanceOutput type;
     private String message;
     private boolean isSuccess;
-    public BalanceOutputUtil(EnumBalanceOutput type, String message, boolean isSuccess)
+    public BalanceOutputUtil(BalanceOutput type, String message, boolean isSuccess)
     {
         this.type = type;
         this.message = message;
         this.isSuccess = isSuccess;
     }
 
-    public EnumBalanceOutput getType()
+    public BalanceOutput getType()
     {
         return type;
     }
