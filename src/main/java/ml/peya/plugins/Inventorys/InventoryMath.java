@@ -1,6 +1,6 @@
 package ml.peya.plugins.Inventorys;
 
-import ml.peya.plugins.*;
+import ml.peya.plugins.Enums.*;
 import ml.peya.plugins.Moneys.*;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.Inventory;
@@ -26,6 +26,7 @@ public class InventoryMath
         {
             if (InventoryItem.isAirOrNull(stack))
                 continue;
+
             returnItemFromStack(player, stack);
         }
     }
@@ -57,7 +58,7 @@ public class InventoryMath
         for (int i = 1; i <= itemStack.getAmount(); i++)
         {
             if (!(itemStack.equals(InventoryItem.getItem(InventoryItemType.BACK_ITEM)) ||
-                    itemStack.getItemMeta().getDisplayName().equals(Atm.language.translateString("word.in"))))
+                    itemStack.getItemMeta().getDisplayName().equals(WordType.IN.toString())))
                 player.getInventory().addItem(itemStack);
         }
     }

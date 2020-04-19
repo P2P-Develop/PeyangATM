@@ -14,14 +14,14 @@ public class InventoryCloseEvent implements Listener
     {
         Player player = (Player) e.getPlayer();
         ItemStack[] stacks = e.getInventory().getStorageContents();
-        if(!(Atm.openInventory.get(player).equals(EnumOpenNowInventoryTypes.IN_INVENTORY)))
+        if(!(Atm.openInventory.get(player).equals(OpenNowInventoryType.IN_INVENTORY)))
         {
-            Atm.openInventory.change(player, EnumOpenNowInventoryTypes.NO_INVENTORY);
+            Atm.openInventory.change(player, OpenNowInventoryType.NO_INVENTORY);
             return;
         }
 
         InventoryMath.returnToPlayer(player, stacks);
 
-        Atm.openInventory.change(player, EnumOpenNowInventoryTypes.NO_INVENTORY);
+        Atm.openInventory.change(player, OpenNowInventoryType.NO_INVENTORY);
     }
 }

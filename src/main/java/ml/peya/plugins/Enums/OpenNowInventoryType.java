@@ -1,6 +1,6 @@
 package ml.peya.plugins.Enums;
 
-public enum EnumOpenNowInventoryTypes
+public enum OpenNowInventoryType
 {
     IN_INVENTORY,
     OUT_INVENTORY,

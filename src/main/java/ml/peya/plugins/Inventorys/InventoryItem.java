@@ -1,6 +1,7 @@
 package ml.peya.plugins.Inventorys;
 
 import ml.peya.plugins.*;
+import ml.peya.plugins.Enums.*;
 import ml.peya.plugins.Moneys.*;
 import ml.peya.plugins.Utils.*;
 import org.bukkit.*;
@@ -48,11 +49,10 @@ public class InventoryItem
     {
         ItemStack selectStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)13);
         ItemMeta selectMeta = selectStack.getItemMeta();
-        LanguageUtil language = Atm.language;
-        selectMeta.setDisplayName(String.format("%s §r| %s", language.translateString("word.in"), language.translateString("word.out")));
+        selectMeta.setDisplayName(String.format("%s §r| %s", WordType.IN.toString(), WordType.OUT.toString()));
         ArrayList<String> lore = new ArrayList<>();
-        String moneyStr = BigDecimal.valueOf(MoneyCoreSystem.getMoney(player)).toPlainString();
-        lore.add(language.translateString("word.now").replace("$amount$", moneyStr).replace("$unit$", Atm.config.getString("unit")));
+        int moneyInt = BigDecimal.valueOf(MoneyCoreSystem.getMoney(player)).intValue();
+        lore.add(Translate.replaceMoney(WordType.NOW.toString(), moneyInt));
         selectMeta.setLore(lore);
         selectStack.setItemMeta(selectMeta);
         return selectStack;
@@ -63,13 +63,13 @@ public class InventoryItem
     {
         ItemStack giveStack = new ItemStack(Material.EMERALD_BLOCK);
         ItemMeta giveMeta = giveStack.getItemMeta();
-        giveMeta.setDisplayName(Atm.language.translateString("word.in"));
+        giveMeta.setDisplayName(WordType.IN.toString());
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(Atm.language.translateString("word.now").replace("$amount$", String.valueOf(money)).replace("$unit$", Atm.config.getString("unit")));
+        lore.add(Translate.replaceMoney(WordType.NOW.toString(), money));
         giveMeta.setLore(lore);
         giveStack.setItemMeta(giveMeta);
         return GlowUtil.setGlow(giveStack);
-    }
+}
 
     public static boolean isAirOrNull(ItemStack stack)
     {

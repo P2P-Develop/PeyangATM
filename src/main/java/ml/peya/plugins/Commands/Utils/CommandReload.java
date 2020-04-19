@@ -1,7 +1,7 @@
 package ml.peya.plugins.Commands.Utils;
 
 import ml.peya.plugins.*;
-import org.bukkit.*;
+import ml.peya.plugins.Enums.*;
 import org.bukkit.command.*;
 
 public class CommandReload
@@ -10,6 +10,6 @@ public class CommandReload
     {
         Atm.plugin.reloadConfig();
         Atm.language.getConfig().reloadConfig();
-        sender.sendMessage(ChatColor. BLUE + "[" + ChatColor.AQUA + "ATM" + ChatColor.BLUE + "] " + Atm.language.translateString("message.reloadSuccess"));
+        sender.sendMessage(WordType.PREFIX.toString() + MessageType.SUCCESSRELOAD.toString());
     }
 }

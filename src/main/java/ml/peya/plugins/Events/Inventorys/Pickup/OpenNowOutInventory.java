@@ -22,12 +22,12 @@ public class OpenNowOutInventory
             return;
 
         LanguageUtil language = Atm.language;
-        BalanceOutputUtil out =  MoneyCoreSystem.withDrawMoney(EnumItemValue.ONE.getEnumItemValuesByInt(MoneyUnit.getMoneyByItems(stack)), player, Atm.config.getBoolean("debt"));
+        BalanceOutputUtil out =  MoneyCoreSystem.withDrawMoney(ItemValue.ONE.getEnumItemValuesByInt(MoneyUnit.getMoneyByItems(stack)), player, Atm.config.getBoolean("debt"));
         switch (out.getType())
         {
             case OK:
                 player.getInventory().addItem(stack);
-                player.sendMessage(language.translateString("message.successOut").replace("$amount$", String.valueOf(MoneyUnit.getMoneyByItems(stack))).replace("$unit$", Atm.config.getString("unit")));
+                player.sendMessage(Translate.replaceMoney(MessageType.SUCCESSOUT.toString(), MoneyUnit.getMoneyByItems(stack)));
                 break;
             case NOACCOUNT:
                 player.sendMessage(language.translateString("error.noAccount"));

@@ -1,6 +1,7 @@
 package ml.peya.plugins.Events.Inventorys.Pickup;
 
 import ml.peya.plugins.*;
+import ml.peya.plugins.Enums.*;
 import ml.peya.plugins.Inventorys.Inventory;
 import ml.peya.plugins.Inventorys.*;
 import ml.peya.plugins.Moneys.*;
@@ -17,14 +18,14 @@ public class OpenNowInInventory
         if (inItems == null || stack.getItemMeta() == null || stack.getItemMeta().getDisplayName() == null)
             return;
         LanguageUtil language = Atm.language;
-        if (stack.getItemMeta().getDisplayName().equals(language.translateString("word.in")))
+        if (stack.getItemMeta().getDisplayName().equals(WordType.IN.toString()))
         {
             e.setCancelled(true);
             BalanceOutputUtil output = MoneyCoreSystem.giveMoney(player, InventoryMath.mathInventoryItems(e.getInventory()));
             switch (output.getType())
             {
                 case OK:
-                    player.sendMessage(language.translateString("message.successIn").replace("$amount$", String.valueOf(InventoryMath.mathInventoryItems(e.getInventory()))).replace("$unit$", Atm.config.getString("unit")));
+                    player.sendMessage(Translate.replaceMoney(MessageType.SUCCESSIN.toString(), InventoryMath.mathInventoryItems(e.getInventory())));
                     e.getInventory().clear();
                     Inventory.openSelectInventory(player);
                     break;
