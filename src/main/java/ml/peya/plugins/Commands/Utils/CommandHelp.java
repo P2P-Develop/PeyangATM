@@ -14,14 +14,13 @@ public class CommandHelp
         sender.sendMessage(ChatColor.DARK_AQUA + "-----=====" + WordType.PREFIX.toString() + ChatColor.DARK_AQUA + "=====-----\n");
         for (String text: language.translateStringList("helpmessage"))
         {
-            if (text.startsWith("_"))
+            if (!text.startsWith("_"))
             {
-                if (sender.hasPermission("atm.admin"))
-                    text =  text.substring(1);
-                else
-                    continue;
+                sender.sendMessage(text + "\n");
+                continue;
             }
-            sender.sendMessage(text + "\n");
+            if (sender.hasPermission("atm.admin"))
+                sender.sendMessage(text.substring(1) + "\n");
         }
 
     }
