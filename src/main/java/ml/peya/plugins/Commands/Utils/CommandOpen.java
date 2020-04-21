@@ -10,6 +10,8 @@ public class CommandOpen
 {
     public static void commandOpen(CommandSender sender)
     {
+        if (!(sender instanceof  Player))
+            sender.sendMessage(Atm.language.translateString("error.pleasePlayer"));
         LanguageUtil language = Atm.language;
         String prefix = language.translateString("word.prefix");
         if (sender instanceof ConsoleCommandSender)

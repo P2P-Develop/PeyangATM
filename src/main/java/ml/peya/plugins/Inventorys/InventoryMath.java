@@ -26,7 +26,10 @@ public class InventoryMath
         {
             if (InventoryItem.isAirOrNull(stack))
                 continue;
-
+            if (stack.equals(InventoryItem.getItem(InventoryItemType.BACK_ITEM)))
+                return;
+            if (!(stack.hasItemMeta() && stack.getItemMeta().getDisplayName().equals(WordType.IN.toString())))
+                return;
             returnItemFromStack(player, stack, isNotMoney);
         }
     }
@@ -55,14 +58,8 @@ public class InventoryMath
 
     private static void returnItemFromStack(Player player, ItemStack itemStack, boolean isNotMoney)
     {
-        if (!itemStack.equals(InventoryItem.getItem(InventoryItemType.BACK_ITEM)))
-        {
-            if (!(itemStack.hasItemMeta() && itemStack.getItemMeta().getDisplayName().equals(WordType.IN.toString())))
-            {
-                if (isNotMoney || !MoneyUnit.isMoneyItem(itemStack))
-                    player.getInventory().addItem(itemStack);
-            }
-        }
-    }
+        if (isNotMoney || !MoneyUnit.isMoneyItem(itemStack))
+            player.getInventory().addItem(itemStack);
 
+    }
 }
