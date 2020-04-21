@@ -14,10 +14,20 @@ import java.util.*;
 
 public class InventoryItem
 {
-
-    public static boolean hasInItem(ItemStack stack)
+    public static boolean isInItem(ItemStack stack)
     {
         return stack.hasItemMeta() && stack.getItemMeta().hasDisplayName() && stack.getItemMeta().getDisplayName().equals(WordType.IN.toString());
+    }
+    public static boolean hasSystemItem(ItemStack stack)
+    {
+        boolean flag = false;
+        if (stack.equals(getItem(InventoryItemType.BACK_ITEM)))
+            flag = true;
+        else if(stack.equals(getItem(InventoryItemType.IN_ITEM)))
+            flag = true;
+        else if(isInItem(stack))
+            flag = true;
+        return flag;
     }
 
     public static ItemStack getItem(InventoryItemType itemType)

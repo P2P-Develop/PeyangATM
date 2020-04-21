@@ -25,7 +25,7 @@ public class InventoryMath
         {
             if (InventoryItem.isAirOrNull(stack))
                 continue;
-            if (stack.equals(InventoryItem.getItem(InventoryItemType.BACK_ITEM)) || InventoryItem.hasInItem(stack))
+            if (InventoryItem.hasSystemItem(stack))
                 continue;
             returnItemFromStack(player, stack, isNotMoney);
         }
