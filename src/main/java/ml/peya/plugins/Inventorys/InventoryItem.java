@@ -15,6 +15,11 @@ import java.util.*;
 public class InventoryItem
 {
 
+    public static boolean hasInItem(ItemStack stack)
+    {
+        return stack.hasItemMeta() && stack.getItemMeta().hasDisplayName() && stack.getItemMeta().getDisplayName().equals(WordType.IN.toString());
+    }
+
     public static ItemStack getItem(InventoryItemType itemType)
     {
         short metaValue;
