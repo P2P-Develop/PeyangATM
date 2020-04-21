@@ -28,14 +28,14 @@ message:
   ##コンフィグリロード(完了)
   successReload: §a§lコンフィグをリロードしました。
 
+#先頭に_のついた文字列は(この項のみ)atm.admin権限を持つ人だけに表示されます。
 helpmessage:
-  - $prefix$ #変えられられません。
   - §b/atm [open]
   - §aATMを開きます。
-  - §b/atm help
-  - §aHELPを表示します。
-  - §b/atm reload
-  - §aコンフィグをリロードします。
+  - _§b/atm help
+  - _§aHELPを表示します。
+  - _§b/atm reload
+  - _§aコンフィグをリロードします。
 
 error:
   ##権限なし
@@ -43,7 +43,7 @@ error:
   ##引数なし
   noArgs: "§4§lエラー: 引数が足りません。"
   ##許可されていない引数
-  inValidArgs: "§4§lエラー: 無効な変数です。"
+  inValidArgs: "§4§lエラー: 無効な引数です。"
   ##アカウント存在なし
   noAccount: "§4§lエラー: アカウントが存在しません。"
   ##預金なし

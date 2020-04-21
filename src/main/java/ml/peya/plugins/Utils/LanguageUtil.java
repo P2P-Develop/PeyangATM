@@ -11,7 +11,7 @@ public class LanguageUtil
     ConfigUtil configUtils;
     public LanguageUtil()
     {
-        configUtils = new ConfigUtil(Atm.plugin, "lang/" + Atm.config.getString("lang"));
+        configUtils = new ConfigUtil(Atm.plugin,  "lang/" + Atm.config.getString("lang"));
         configUtils.saveDefaultConfig();
         config = configUtils.getConfig();
     }

@@ -10,25 +10,24 @@ public class Inventory
 {
     public static void openSelectInventory(Player player)
     {
-        String textTitle = WordType.TITLE.toString();
-        org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 9, textTitle);
-        ItemStack outStack = InventoryItem.getItem(InventoryItemType.OUT_ITEM);
-        ItemStack inStack = InventoryItem.getItem(InventoryItemType.IN_ITEM);
-        ItemStack selectStack = InventoryItem.getSelectItems(player);
-        inventory.setItem(0, inStack);
-        inventory.setItem(1, inStack);
-        inventory.setItem(2, inStack);
-        inventory.setItem(3, inStack);
-        inventory.setItem(4, selectStack);
-        inventory.setItem(5, outStack);
-        inventory.setItem(6, outStack);
-        inventory.setItem(7, outStack);
-        inventory.setItem(8, outStack);
-        player.openInventory(inventory);
+
+        player.openInventory(getSelectInventory(player));
         Atm.openInventory.change(player, OpenNowInventoryType.SELECT_INVENTORY);
     }
 
     public static void openInInventory(Player player)
+    {
+        player.openInventory(getInInventory());
+        Atm.openInventory.change(player, OpenNowInventoryType.IN_INVENTORY);
+    }
+
+    public static void openOutInventory(Player player)
+    {
+        player.openInventory(getOutInventory());
+        Atm.openInventory.change(player, OpenNowInventoryType.OUT_INVENTORY);
+    }
+
+    public static org.bukkit.inventory.Inventory getInInventory()
     {
         String textTitle = WordType.IN.toString();
         org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 54, textTitle);
@@ -42,11 +41,10 @@ public class Inventory
         inventory.setItem(47, backItem);
         inventory.setItem(46, backItem);
         inventory.setItem(45, backItem);
-        player.openInventory(inventory);
-        Atm.openInventory.change(player, OpenNowInventoryType.IN_INVENTORY);
+        return inventory;
     }
 
-    public static void openOutInventory(Player player)
+    public static org.bukkit.inventory.Inventory getOutInventory()
     {
         String textTitle = WordType.OUT.toString();
         ItemStack backButton = InventoryItem.getItem(InventoryItemType.BACK_ITEM);
@@ -69,7 +67,25 @@ public class Inventory
         inventory.setItem(15, backButton);
         inventory.setItem(16, backButton);
         inventory.setItem(17, backButton);
-        player.openInventory(inventory);
-        Atm.openInventory.change(player, OpenNowInventoryType.OUT_INVENTORY);
+        return inventory;
+    }
+
+    public static org.bukkit.inventory.Inventory getSelectInventory(Player player)
+    {
+        String textTitle = WordType.TITLE.toString();
+        org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 9, textTitle);
+        ItemStack outStack = InventoryItem.getItem(InventoryItemType.OUT_ITEM);
+        ItemStack inStack = InventoryItem.getItem(InventoryItemType.IN_ITEM);
+        ItemStack selectStack = InventoryItem.getSelectItems(player);
+        inventory.setItem(0, inStack);
+        inventory.setItem(1, inStack);
+        inventory.setItem(2, inStack);
+        inventory.setItem(3, inStack);
+        inventory.setItem(4, selectStack);
+        inventory.setItem(5, outStack);
+        inventory.setItem(6, outStack);
+        inventory.setItem(7, outStack);
+        inventory.setItem(8, outStack);
+        return inventory;
     }
 }
