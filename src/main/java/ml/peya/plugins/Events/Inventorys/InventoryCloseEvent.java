@@ -20,7 +20,7 @@ public class InventoryCloseEvent implements Listener
             return;
         }
 
-        InventoryMath.returnToPlayer(player, stacks);
+        InventoryMath.returnToPlayer(player, true, stacks);
 
         Atm.openInventory.change(player, OpenNowInventoryType.NO_INVENTORY);
     }

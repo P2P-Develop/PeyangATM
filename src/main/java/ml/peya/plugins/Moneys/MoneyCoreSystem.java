@@ -9,20 +9,20 @@ import org.bukkit.entity.*;
 public class MoneyCoreSystem
 {
     private static Economy economy = Atm.economy;
-    public static BalanceOutputUtil withDrawMoney(ItemValue money, Player player, boolean isDebt)
+    public static BalanceOutputUtil withDrawMoney(int money, Player player, boolean isDebt)
     {
-        BalanceOutputUtil output = hasBalance(player, money.getMoney());
+        BalanceOutputUtil output = hasBalance(player, money);
         switch(output.getType())
         {
             case OK:
-                economy.withdrawPlayer(player, money.getMoney());
+                economy.withdrawPlayer(player, money);
                 return new BalanceOutputUtil(output.getType(), "OK", true);
             case NOACCOUNT:
                 return new BalanceOutputUtil(output.getType(), "No Account", false);
             case NOMONEY:
                 if (isDebt)
                 {
-                    economy.withdrawPlayer(player, money.getMoney());
+                    economy.withdrawPlayer(player, money);
                     return new BalanceOutputUtil(output.getType(), "OK", true);
                 }
                 else

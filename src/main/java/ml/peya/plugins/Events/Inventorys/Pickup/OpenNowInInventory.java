@@ -26,6 +26,7 @@ public class OpenNowInInventory
             {
                 case OK:
                     player.sendMessage(Translate.replaceMoney(MessageType.SUCCESSIN.toString(), InventoryMath.mathInventoryItems(e.getInventory())));
+                    InventoryMath.returnToPlayer(player, false, e.getInventory().getContents());
                     e.getInventory().clear();
                     Inventory.openSelectInventory(player);
                     break;

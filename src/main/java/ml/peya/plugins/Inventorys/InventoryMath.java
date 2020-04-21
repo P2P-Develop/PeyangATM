@@ -20,14 +20,14 @@ public class InventoryMath
         return money;
     }
 
-    public static void returnToPlayer(Player player, ItemStack... stacks)
+    public static void returnToPlayer(Player player, boolean isNotMoney, ItemStack... stacks)
     {
         for (ItemStack stack: stacks)
         {
             if (InventoryItem.isAirOrNull(stack))
                 continue;
 
-            returnItemFromStack(player, stack);
+            returnItemFromStack(player, stack, isNotMoney);
         }
     }
 
@@ -53,13 +53,15 @@ public class InventoryMath
         }
     }
 
-    private static void returnItemFromStack(Player player, ItemStack itemStack)
+    private static void returnItemFromStack(Player player, ItemStack itemStack, boolean isNotMoney)
     {
-        for (int i = 1; i <= itemStack.getAmount(); i++)
+        if (!itemStack.equals(InventoryItem.getItem(InventoryItemType.BACK_ITEM)))
         {
-            if (!(itemStack.equals(InventoryItem.getItem(InventoryItemType.BACK_ITEM)) ||
-                    itemStack.getItemMeta().getDisplayName().equals(WordType.IN.toString())))
-                player.getInventory().addItem(itemStack);
+            if (!(itemStack.hasItemMeta() && itemStack.getItemMeta().getDisplayName().equals(WordType.IN.toString())))
+            {
+                if (isNotMoney || !MoneyUnit.isMoneyItem(itemStack))
+                    player.getInventory().addItem(itemStack);
+            }
         }
     }
 

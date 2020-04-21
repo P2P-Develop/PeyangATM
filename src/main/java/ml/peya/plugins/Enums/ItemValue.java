@@ -16,28 +16,14 @@ public enum ItemValue
     TEN_MILLION(10000000), //いっせんまん
     HUNDRED_MILLION(100000000); //いちおく
 
-    private ItemStack moneyStacks;
-    private int money;
+    private ItemStack moneyStack;
     ItemValue(int money)
     {
-        this.moneyStacks = MoneyUnit.getItemByInt(money);
-        this.money = money;
-    }
-
-    public ItemValue getEnumItemValuesByInt(int money)
-    {
-        this.moneyStacks = MoneyUnit.getItemByInt(money);
-        this.money = money;
-        return this;
+        this.moneyStack = MoneyUnit.getItemByInt(money);
     }
 
     public ItemStack getItem()
     {
-        return this.moneyStacks;
-    }
-
-    public int getMoney()
-    {
-         return this.money;
+        return this.moneyStack;
     }
 }

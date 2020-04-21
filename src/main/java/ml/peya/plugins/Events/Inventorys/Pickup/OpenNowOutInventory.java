@@ -11,8 +11,10 @@ import org.bukkit.inventory.*;
 
 public class OpenNowOutInventory
 {
-    public static void process(Player player, ItemStack stack)
+    public static void process(Player player, ItemStack stack, org.bukkit.inventory.Inventory inventory)
     {
+        if (!Inventory.getOutInventory().getTitle().equals(inventory.getTitle()))
+            return;
         if (stack.equals(InventoryItem.getItem(InventoryItemType.BACK_ITEM)))
         {
             Inventory.openSelectInventory(player);
@@ -22,7 +24,7 @@ public class OpenNowOutInventory
             return;
 
         LanguageUtil language = Atm.language;
-        BalanceOutputUtil out =  MoneyCoreSystem.withDrawMoney(ItemValue.ONE.getEnumItemValuesByInt(MoneyUnit.getMoneyByItems(stack)), player, Atm.config.getBoolean("debt"));
+        BalanceOutputUtil out =  MoneyCoreSystem.withDrawMoney(MoneyUnit.getMoneyByItems(stack), player, Atm.config.getBoolean("debt"));
         switch (out.getType())
         {
             case OK:

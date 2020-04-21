@@ -36,10 +36,8 @@ public class InventoryItemClickEvent implements Listener
                 break;
             case OUT_INVENTORY:
                 e.setCancelled(true);
-                OpenNowOutInventory.process(player, stack);
+                OpenNowOutInventory.process(player, stack, e.getClickedInventory());
                 break;
         }
     }
-
-
 }
