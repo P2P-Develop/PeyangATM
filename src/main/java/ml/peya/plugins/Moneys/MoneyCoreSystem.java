@@ -62,4 +62,11 @@ public class MoneyCoreSystem
     {
         return economy.getBalance(player);
     }
+
+    public static boolean isOverflow(Player player, int money)
+    {
+        if (0 > money)
+            return true;
+        return 0 > (getMoney(player) + money);
+    }
 }

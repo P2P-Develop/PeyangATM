@@ -24,7 +24,7 @@ public class InventoryClickEvent implements Listener
             {
                 Atm.getPlugin().getServer().getScheduler().scheduleSyncDelayedTask(Atm.getPlugin(), () -> {
                     int money = InventoryMath.mathInventoryItems(inventory);
-                    inItems[0] = InventoryItem.getGiveItem(money);
+                    inItems[0] = InventoryItem.getGiveItem(player, money);
                     inventory.setItem(49, inItems[0]);
                 }, 2L);
             }

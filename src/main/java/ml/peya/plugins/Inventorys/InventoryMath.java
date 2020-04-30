@@ -58,4 +58,5 @@ public class InventoryMath
         if (isNotMoney || !MoneyUnit.isMoneyItem(itemStack))
             player.getInventory().addItem(itemStack);
     }
+
 }
