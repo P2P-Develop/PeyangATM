@@ -36,7 +36,7 @@ public class Inventory
         inventory.setItem(52, backItem);
         inventory.setItem(51, backItem);
         inventory.setItem(50, backItem);
-        inventory.setItem(49, InventoryItem.getGiveItem(0));
+        inventory.setItem(49, InventoryItem.getGiveItem(null, 0));
         inventory.setItem(48, backItem);
         inventory.setItem(47, backItem);
         inventory.setItem(46, backItem);

@@ -21,19 +21,28 @@ public class OpenNowInInventory
         if (stack.getItemMeta().getDisplayName().equals(WordType.IN.toString()))
         {
             e.setCancelled(true);
-            BalanceOutputUtil output = MoneyCoreSystem.giveMoney(player, InventoryMath.mathInventoryItems(e.getInventory()));
-            switch (output.getType())
-            {
-                case OK:
-                    player.sendMessage(Translate.replaceMoney(MessageType.SUCCESSIN.toString(), InventoryMath.mathInventoryItems(e.getInventory())));
-                    InventoryMath.returnToPlayer(player, false, e.getInventory().getContents());
-                    e.getInventory().clear();
-                    Inventory.openSelectInventory(player);
-                    break;
-                case NOACCOUNT:
-                    player.sendMessage(language.translateString("error.noAccount"));
-                    break;
-            }
+            if (MoneyCoreSystem.isOverflow(player, InventoryMath.mathInventoryItems(e.getInventory())))
+                player.sendMessage(language.translateString("error.overflow"));
+            else
+                in(e.getInventory(), player);
         }
     }
+
+    private static void in(org.bukkit.inventory.Inventory inventory, Player player)
+    {
+        BalanceOutputUtil output = MoneyCoreSystem.giveMoney(player, InventoryMath.mathInventoryItems(inventory));
+        switch (output.getType())
+        {
+            case OK:
+                player.sendMessage(Translate.replaceMoney(MessageType.SUCCESSIN.toString(), InventoryMath.mathInventoryItems(inventory)));
+                InventoryMath.returnToPlayer(player, false, inventory.getContents());
+                inventory.clear();
+                Inventory.openSelectInventory(player);
+                break;
+            case NOACCOUNT:
+                player.sendMessage(Atm.language.translateString("error.noAccount"));
+                break;
+        }
+    }
+
 }

@@ -66,7 +66,7 @@ public class InventoryItem
         ItemMeta selectMeta = selectStack.getItemMeta();
         selectMeta.setDisplayName(String.format("%s §r| %s", WordType.IN.toString(), WordType.OUT.toString()));
         ArrayList<String> lore = new ArrayList<>();
-        int moneyInt = BigDecimal.valueOf(MoneyCoreSystem.getMoney(player)).intValue();
+        long moneyInt = BigDecimal.valueOf(MoneyCoreSystem.getMoney(player)).longValue();
         lore.add(Translate.replaceMoney(WordType.NOW.toString(), moneyInt));
         selectMeta.setLore(lore);
         selectStack.setItemMeta(selectMeta);
@@ -74,17 +74,24 @@ public class InventoryItem
     }
 
 
-    public static ItemStack getGiveItem(int money)
+    public static ItemStack getGiveItem(Player player, int money)
     {
-        ItemStack giveStack = new ItemStack(Material.EMERALD_BLOCK);
+        ItemStack giveStack;
+        if (player != null && MoneyCoreSystem.isOverflow(player, money))
+            giveStack = new ItemStack(Material.REDSTONE_BLOCK);
+        else
+            giveStack = new ItemStack(Material.EMERALD_BLOCK);
         ItemMeta giveMeta = giveStack.getItemMeta();
         giveMeta.setDisplayName(WordType.IN.toString());
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(Translate.replaceMoney(WordType.NOW.toString(), money));
+        if (player != null && MoneyCoreSystem.isOverflow(player, money))
+            lore.add(Atm.language.translateString("error.overflow"));
+        else
+            lore.add(Translate.replaceMoney(WordType.NOW.toString(), money));
         giveMeta.setLore(lore);
         giveStack.setItemMeta(giveMeta);
         return GlowUtil.setGlow(giveStack);
-}
+    }
 
     public static boolean isAirOrNull(ItemStack stack)
     {
